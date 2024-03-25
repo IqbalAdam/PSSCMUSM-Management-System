@@ -1,0 +1,218 @@
+/* CSS for index.html */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #e6f7ff; /* Light blue background */
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #004080; /* Dark blue header */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.logo img {
+    height: 70px;
+    margin-right: 10px; /* Add margin between logo and text */
+}
+
+h1 {
+    margin-left: 10px; /* Add margin between logo and text */
+    font-family: 'Michroma', sans-serif; /* Set font to Michroma */
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+nav {
+    background-color: #d9e6f2; /* Lighter color for navigation bar */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed; /* Fix the navigation bar */
+    top: 120px; /* Align it below the header */
+    bottom: 0; /* Stretch it to the bottom of the viewport */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin-bottom: 10px;
+    margin-bottom: 20px; /* Add space between navigation items vertically */
+}
+
+nav ul li a {
+    color: #fff; /* Change text color to white */
+    background-color: #004080; /* Use the same color as the header */
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px; /* Add rounded corners */
+    margin-bottom: 20px; /* Add space between navigation items vertically */
+}
+
+nav ul li a.active {
+    font-weight: bold;
+}
+
+.logout-btn {
+    margin-top: auto; /* Push logout button to the bottom */
+    width: 100%;
+    padding: 10px;
+    background-color: #004080;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+main {
+    padding: 20px;
+}
+
+.tiles {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.tile {
+    padding: 20px;
+    background-color: #004080;
+    color: #fff;
+    text-decoration: none;
+}
+
+.tile:hover {
+    background-color: #002040;
+}
+
+/* CSS for index.html */
+.home-nav {
+    background-color: #d9e6f2; /* Lighter color for home page navigation bar */
+    width: 150px;
+}
+
+/* CSS for attendance.html */
+.attendance-nav {
+    background-color: #eaeaea; /* Lighter color for attendance page navigation bar */
+    width: 150px;
+}
+
+/* CSS for the main content area */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px; /* Adjust margin-top for spacing from header */
+}
+
+/* CSS for the boxes */
+.box {
+    width: 300px;
+    height: 300px;
+    background-color: #fff; /* White background */
+    border: 2px solid #004080; /* Dark blue border */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 100px;
+    margin-left: 350px;
+    margin-top: -100px;
+}
+
+.box h2 {
+    margin-top: 20px;
+    font-size: 24px;
+    text-align: center;
+    color: #004080; /* Change text color */
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+}
+
+.box img {
+    margin-top: 20px;
+    width: 100px; /* Adjust width of the icon */
+    height: auto;
+}
+
+.box p {
+    margin-top: 10px; /* Add space between icon and text */
+    text-align: center;
+    color: #333; /* Change text color */
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+}
+
+/* Specific styling for the 'Records' box */
+.records {
+    margin-left: 10px; /* Adjust margin to decrease space between boxes */
+}
+
+/* CSS for choose date and class id */
+.choose-date,
+.class-id {
+    margin-bottom: 20px; /* Add some space between elements */
+}
+
+.choose-date label,
+.class-id label {
+    display: block;
+    margin-bottom: 5px; /* Add space below labels */
+}
+
+.choose-date input,
+.class-id input {
+    width: 200px; /* Adjust width as needed */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.choose-date,
+.class-id {
+    display: inline-block; /* Display elements side by side */
+    vertical-align: top; /* Align elements to the top */
+    margin-right: 20px; /* Add some space between elements */
+}
+
+.navigation-text {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 55px; /* Adjust the margin according to your design */
+    margin-left: 350px;
+}
+
+
+/* CSS for attend2.html */
+
+/* Style for each item of student information */
+.student-info-item {
+    margin-bottom: 25px; /* Adjust spacing between items */
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+/* Adjust position of items within the student information container */
+.student-info-item label {
+    font-weight: bold; /* Make labels bold */
+    width: 120px; /* Set a fixed width for uniformity */
+}
+
+/* Align colon (:) symbol */
+.student-info-item::after {
+    content: ":";
+    margin-left: 20px; /* Adjust as needed */
+}

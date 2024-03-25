@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attend</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <h1>PSSCMUSM Management System</h1>
+    </header>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="anr.html" class="active">Attendance & Records</a></li>
+                <li><a href="sdm.html">Student Data Management</a></li>
+                <li><a href="visual.html">Data Visualization</a></li>
+            </ul>
+            <button class="logout-btn">Logout</button>
+        </nav>
+    </div>
+
+    <!-- Navigation text -->
+    <div class="navigation-text">
+        Attendance & Records > Set Up Class
+    </div>
+
+    <main>
+        <div class="choose-date">
+            <label for="class-date">Choose Class Date</label>
+            <input type="text" id="class-date" name="class-date">
+        </div>
+        <div class="class-id">
+            <label for="class-id">Class ID (Auto Generate)</label>
+            <input type="text" id="class-id" name="class-id" readonly>
+        </div>
+
+        <!-- Start Session Button -->
+        <div class="start-session-btn">
+            <button class="start-session">Start Session</button>
+        </div>
+    </main>
+    
+    <script>
+        $(function() {
+            $("#class-date").datepicker({
+                dateFormat: 'dd/mm/yy', // Set the date format to DD/MM/YYYY
+                onSelect: function(dateText) {
+                    var date = new Date(dateText);
+                    var year = date.getFullYear().toString().substr(-3); // Extract last three digits of the year
+                    var randomLetters = generateRandomLetters(6);
+                    var classID = randomLetters + "-" + year; // Example format: ABCDEF-025
+                    $("#class-id").val(classID);
+                }
+            });
+
+            // Button click event handler
+            $(".start-session").click(function() {
+                var classDate = $("#class-date").val();
+                if (classDate) {
+                    // Redirect to attend2.html
+                    window.location.href = "attend2.html";
+                } else {
+                    // Show error notification
+                    alert("Must choose date first before Start Session");
+                }
+            });
+
+            function generateRandomLetters(length) {
+                var result = '';
+                var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                var charactersLength = characters.length;
+                for (var i = 0; i < length; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+                return result;
+            }
+        });
+    </script>
+</body>
+</html>
