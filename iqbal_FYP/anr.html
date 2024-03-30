@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSSCMUSM Management System</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
+    <!--Header with title and PSSCMUSM logo-->
     <header>
         <div class="logo">
             <img src="logo.png" alt="Logo">
@@ -25,24 +28,25 @@
         </nav>
     </div>
 
-    <!-- Navigation text -->
+    <!--Navigation header inside body-->
     <div class="navigation-text">
         Attendance & Records
     </div>
 
     <main>
-        <a href="attend.html" class="box attendance"> <!-- Added anchor tag -->
+        <a href="attend.html" class="box attendance">
             <h2>Attendance</h2>
             <img src="pic1.png" alt="Attendance Icon">
-            <p>Start class session to record attendance</p>
+            <p><br>Start class session <br>to record attendance</p>
         </a>
-        <div class="box records">
+        <a href="record.html" class="box records"> <!-- Updated this line -->
             <h2>Records</h2>
             <img src="pic2.png" alt="Records Icon">
-            <p>View past class attendance records</p>
-        </div>
+            <p><br>View past class<br> attendance records</p>
+        </a>
     </main>
 
+    <!--Referring to external JavaScript file-->
     <script src="script.js" defer></script>
 </body>
 </html>

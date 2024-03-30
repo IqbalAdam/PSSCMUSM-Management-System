@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--Referring to external JavaScript file-->
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!--Header with title and PSSCMUSM logo-->
     <header>
         <div class="logo">
             <img src="logo.png" alt="Logo">
@@ -35,6 +37,7 @@
     </div>
 
     <main>
+        <!--Set up class session-->
         <div class="choose-date">
             <label for="class-date">Choose Class Date</label>
             <input type="text" id="class-date" name="class-date">
@@ -51,30 +54,20 @@
     </main>
     
     <script>
-        $(function() {
+        $(document).ready(function() {
+            // Datepicker initialization
             $("#class-date").datepicker({
                 dateFormat: 'dd/mm/yy', // Set the date format to DD/MM/YYYY
                 onSelect: function(dateText) {
                     var date = new Date(dateText);
-                    var year = date.getFullYear().toString().substr(-3); // Extract last three digits of the year
+                    var year = date.getFullYear(); // Extract the year
                     var randomLetters = generateRandomLetters(6);
-                    var classID = randomLetters + "-" + year; // Example format: ABCDEF-025
+                    var classID = randomLetters + "-" + year.toString().substr(-2); // Example format: ABCDEF-24
                     $("#class-id").val(classID);
                 }
             });
 
-            // Button click event handler
-            $(".start-session").click(function() {
-                var classDate = $("#class-date").val();
-                if (classDate) {
-                    // Redirect to attend2.html
-                    window.location.href = "attend2.html";
-                } else {
-                    // Show error notification
-                    alert("Must choose date first before Start Session");
-                }
-            });
-
+            // Function to generate random letters
             function generateRandomLetters(length) {
                 var result = '';
                 var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -84,6 +77,19 @@
                 }
                 return result;
             }
+
+            // Button click event handler for "Start Session" button
+            $(".start-session").click(function() {
+                var classDate = $("#class-date").val();
+                var classID = $("#class-id").val();
+                if (!classDate || !classID) {
+                    // Show error notification
+                    alert("Must select a date first before 'Start Session'");
+                } else {
+                    // Proceed to attend2.html
+                    window.location.href = "attend2.html";
+                }
+            });
         });
     </script>
 </body>

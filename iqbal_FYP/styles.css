@@ -2,44 +2,52 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #e6f7ff; /* Light blue background */
+    background-color: #e6f7ff;
     font-family: Arial, sans-serif;
 }
 
+/* CSS for header */
 header {
-    background-color: #004080; /* Dark blue header */
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
-}
-
-.logo img {
-    height: 70px;
-    margin-right: 10px; /* Add margin between logo and text */
+  background-color: #004080; 
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed; /* Set the header to be fixed */
+  top: 0; /* Position it at the top */
+  width: 100%; /* Make it span the entire width */
+  z-index: 1000; /* Ensure it's above other content */
 }
 
 h1 {
-    margin-left: 10px; /* Add margin between logo and text */
-    font-family: 'Michroma', sans-serif; /* Set font to Michroma */
+  margin-left: 10px;
+  font-family: sans-serif;
+}
+
+/* CSS for PSSCMUSM logo in header*/
+.logo img {
+  height: 70px;
+  margin-right: 10px;
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  padding-top: 90px; /* Add padding to the top of the content to prevent it from being hidden behind the fixed header */
 }
 
+/* CSS for the left-side navigation bar*/
 nav {
-    background-color: #d9e6f2; /* Lighter color for navigation bar */
+    background-color: #d9e6f2;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    position: fixed; /* Fix the navigation bar */
-    top: 120px; /* Align it below the header */
-    bottom: 0; /* Stretch it to the bottom of the viewport */
+    position: fixed;
+    top: 120px;
+    bottom: 0;
 }
 
 nav ul {
@@ -50,12 +58,12 @@ nav ul {
 
 nav ul li {
     margin-bottom: 10px;
-    margin-bottom: 20px; /* Add space between navigation items vertically */
+    margin-bottom: 20px;
 }
 
 nav ul li a {
-    color: #fff; /* Change text color to white */
-    background-color: #004080; /* Use the same color as the header */
+    color: #fff;
+    background-color: #004080;
     text-decoration: none;
     display: block;
     padding: 10px;
@@ -132,6 +140,7 @@ main {
     margin-right: 100px;
     margin-left: 350px;
     margin-top: -100px;
+    text-decoration: none;
 }
 
 .box h2 {
@@ -215,4 +224,289 @@ main {
 .student-info-item::after {
     content: ":";
     margin-left: 20px; /* Adjust as needed */
+}
+
+.student-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.student-picture {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #000;
+    margin-right: 20px;
+}
+
+.student-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-info-item {
+    margin-bottom: 10px;
+}
+
+/*CSS for login page*/
+.bg-img {
+    background-image: url('picturesc.png'); /* Replace 'picturesc.png' with your own image name */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.bg-img{
+  background: url('bg.jpg');
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+.bg-img:after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #004080;
+}
+.content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+  text-align: center;
+  padding: 60px 32px;
+  width: 370px;
+  transform: translate(-50%,-50%);
+  background: rgba(255,255,255,0.04);
+  box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+}
+.content header{
+  color: white;
+  font-size: 33px;
+  font-weight: 600;
+  margin: 0 0 35px 0;
+  font-family: 'Montserrat',sans-serif;
+}
+.field{
+  position: relative;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  background: rgba(255,255,255,0.94);
+}
+.field span{
+  color: #222;
+  width: 40px;
+  line-height: 45px;
+}
+.field input{
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #222;
+  font-size: 16px;
+  font-family: 'Poppins',sans-serif;
+}
+.space{
+  margin-top: 16px;
+}
+.show{
+  position: absolute;
+  right: 13px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #222;
+  display: none;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+}
+.pass-key:valid ~ .show{
+  display: block;
+}
+.pass{
+  text-align: left;
+  margin: 10px 0;
+}
+.pass a{
+  color: white;
+  text-decoration: none;
+  font-family: 'Poppins',sans-serif;
+}
+.pass:hover a{
+  text-decoration: underline;
+}
+.field input[type="submit"]{
+  background: #3498db;
+  border: 1px solid #2691d9;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+}
+.field input[type="submit"]:hover{
+  background: #2691d9;
+}
+.login{
+  color: white;
+  margin: 20px 0;
+  font-family: 'Poppins',sans-serif;
+}
+.links{
+  display: flex;
+  cursor: pointer;
+  color: white;
+  margin: 0 0 20px 0;
+}
+
+.links i{
+  font-size: 17px;
+}
+i span{
+  margin-left: 8px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-family: 'Poppins',sans-serif;
+}
+.signup{
+  font-size: 15px;
+  color: white;
+  font-family: 'Poppins',sans-serif;
+}
+.signup a{
+  color: #3498db;
+  text-decoration: none;
+}
+.signup a:hover{
+  text-decoration: underline;
+}
+
+.end-session-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 999; /* Ensure it's above other elements */
+}
+
+/* Table in records */
+.list-section {
+  margin-top: 20px;
+}
+
+.table-container {
+  width: calc(100% - 240px); /* Adjusted width to leave space for the left navigation bar */
+  margin-top: 10px;
+  margin-left: 252px;
+  border-collapse: collapse;
+  padding-left: 20px; /* Add padding to the left side */
+}
+
+.table-container th, .table-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.table-container th {
+  background-color: #f2f2f2;
+}
+
+/* Alternating row colors */
+.table-container tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/*Sort button beside percentage*/
+#sortBtn {
+  border: none; /* Remove border */
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  vertical-align: middle;
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+#sortBtn.asc {
+  transform: rotate(0deg); /* Rotate arrow for ascending order */
+}
+
+#sortBtn.desc {
+  transform: rotate(180deg); /* Keep arrow as it is for descending order */
+}
+
+/*TESTING FOR record2.html*/
+/* CSS code in styles.css */
+
+/* Style for the pencil icon button */
+.edit-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Style for the pencil icon */
+.edit-btn img {
+  width: 20px; /* Adjust the size of the icon */
+}
+
+/* Style for the dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style for the dropdown button */
+.dropbtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Style for the dropdown menu */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Style for dropdown menu items */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change background color of dropdown items on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu */
+.show {
+  display: block;
 }
