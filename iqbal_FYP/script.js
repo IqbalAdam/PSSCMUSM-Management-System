@@ -80,3 +80,24 @@ $(document).ready(function() {
         toggleSortIcon($(this));
     });
 });
+
+//Change date format in record.html
+// Get all table rows
+const rows = document.querySelectorAll('.table-container tbody tr');
+
+// Iterate through each row
+rows.forEach(row => {
+    // Get the date cell
+    const dateCell = row.querySelector('td:nth-child(3)');
+    // Extract the date value
+    const dateValue = dateCell.textContent.trim();
+    // Split the date by '-' to get year, month, and day
+    const [year, month, day] = dateValue.split('-');
+    // Format the date as DD/MM/YYYY
+    const formattedDate = `${day}/${month}/${year}`;
+    // Update the cell with the new date format
+    dateCell.textContent = formattedDate;
+});
+
+
+
