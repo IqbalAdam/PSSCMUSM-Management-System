@@ -1,5 +1,6 @@
 /* ------------------------------------------------------------------- */
 /* Base design of PMS */
+/* Design in index.html */
 body {
     margin: 0;
     padding: 0;
@@ -98,6 +99,30 @@ nav ul li a.active {
   margin-left: 350px;
 }
 
+/* CSS for the boxes in index.html */
+#index main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 150px; /* Adjusted padding-top */
+  margin-top: -50px; /* Move the boxes up */
+  margin-right: -190px; /* Move the boxes to the right */
+}
+
+#index .box {
+  width: 300px;
+  height: 300px;
+  background-color: #fff;
+  border: 2px solid #004080;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px; /* Adjusted margin for spacing between boxes */
+  text-decoration: none;
+}
 
 /* ------------------------------------------------------------------- */
 /* CSS in anr.html */
@@ -314,18 +339,10 @@ main {
 }
 
 
-/* CSS for the boxes in index.html */
-#index main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding-top: 150px; /* Adjusted padding-top */
-  margin-top: -50px; /* Move the boxes up */
-  margin-right: -190px; /* Move the boxes to the right */
-}
-
-#index .box {
+/* ------------------------------------------------------------------- */
+/* CSS in sdm.html */
+/* New CSS classes for boxes in sdm.html */
+.sdm-box {
   width: 300px;
   height: 300px;
   background-color: #fff;
@@ -335,6 +352,77 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 20px; /* Adjusted margin for spacing between boxes */
+  margin-right: -60px; 
+  margin-left: 190px; 
+  margin-top: -100px;
   text-decoration: none;
+}
+
+.sdm-box h2 {
+  margin-top: 20px;
+  font-size: 24px;
+  text-align: center;
+  color: #004080; 
+  font-family: 'Roboto', sans-serif; 
+}
+
+.sdm-box img {
+  margin-top: 20px;
+  width: 100px; 
+  height: auto;
+}
+
+.sdm-box p {
+  margin-top: 10px; 
+  text-align: center;
+  color: #333; 
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+/* REVISE THE SORT BUTTON */
+/* CSS for manage.html */
+
+.table-container {
+  width: calc(100% - 260px); /* Adjusted width to leave space for the left navigation bar */
+  margin-top: 20px;
+  margin-right: 100px;
+  margin-left: 260px;
+  border-collapse: collapse;
+  padding-left: 20px; /* Add padding to the left side */
+}
+
+.table-container th,
+.table-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.table-container th {
+  background-color: #f2f2f2;
+}
+
+/* Alternating row colors */
+.table-container tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Edit and delete buttons */
+.edit-btn,
+.delete-btn {
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  background-color: #0056b3;
 }
