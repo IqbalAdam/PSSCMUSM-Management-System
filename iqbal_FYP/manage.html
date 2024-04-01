@@ -5,63 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSSCMUSM Management System</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Additional CSS for search box */
-        .search-container {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 50px; /* Add space between search box and table */
-            margin-right: 40px;
-            margin-top: -40px;
-        }
-
-        .search-container input[type=text] {
-            padding: 8px;
-            margin-right: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-
-        .search-container button {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: #fff;
-            font-size: 16px;
-        }
-
-        .search-container button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Adjustments for the table container */
-        .table-container-wrapper {
-            position: relative;
-        }
-
-        .table-container {
-            width: 100%; /* Take up full width */
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        .table-container th, .table-container td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        .table-container th {
-            background-color: #f2f2f2;
-        }
-
-        .table-container tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-    </style>
 </head>
 <body>
     <!--Header with title and PSSCMUSM logo-->
@@ -93,62 +36,167 @@
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Search by Name or Matric ID">
         <button onclick="searchTable()">Search</button>
+        <button onclick="clearSearch()">Clear</button> 
     </div>
 
-    <!-- Table container -->
-    <div class="table-container-wrapper">
-        <table class="table-container">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Name</th>
-                    <th>Matric ID</th>
-                    <th>Gender</th>
-                    <th>Year</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                <!-- Example rows -->
-                <tr>
-                    <td>1</td>
-                    <td>John Doe</td>
-                    <td>123456</td>
-                    <td>Male</td>
-                    <td>2nd</td>
-                    <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                    </td>
-                </tr>
-                <!-- Add more rows as needed -->
-            </tbody>
-        </table>
+
+    <!-- Table box container -->
+    <div class="table-box">
+        <!-- Table container -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Matric ID</th>
+                        <th>Gender</th>
+                        <th>Year</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Example rows -->
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>123456</td>
+                        <td>Male</td>
+                        <td>2nd</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jack Gates</td>
+                        <td>741258</td>
+                        <td>Female</td>
+                        <td>3rd</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Muhammad Iqbal Adam Bin Mohamad Saupi</td>
+                        <td>150632</td>
+                        <td>Male</td>
+                        <td>4th</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
+                        <tr>
+                            <td>4</td>
+                            <td>Siti Nur Shafiqah Binti Kamarul</td>
+                            <td>147225</td>
+                            <td>Female</td>
+                            <td>5th</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Siti Nur Shafiqah Binti Kamarul</td>
+                            <td>147225</td>
+                            <td>Female</td>
+                            <td>5th</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Siti Nur Shafiqah Binti Kamarul</td>
+                            <td>147225</td>
+                            <td>Female</td>
+                            <td>5th</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Siti Nur Shafiqah Binti Kamarul</td>
+                            <td>147225</td>
+                            <td>Female</td>
+                            <td>5th</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Siti Nur Shafiqah Binti Kamarul</td>
+                            <td>147225</td>
+                            <td>Female</td>
+                            <td>5th</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Siti Nur Shafiqah Binti Kamarul</td>
+                            <td>147225</td>
+                            <td>Female</td>
+                            <td>5th</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Siti Nur Shafiqah Binti Kamarul</td>
+                            <td>147225</td>
+                            <td>Female</td>
+                            <td>5th</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Siti Nur Shafiqah Binti Kamarul</td>
+                            <td>147225</td>
+                            <td>Female</td>
+                            <td>5th</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Siti Nur Shafiqah Binti Kamarul</td>
+                            <td>147225</td>
+                            <td>Female</td>
+                            <td>5th</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                    </tr>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!--Referring to external JavaScript file-->
     <script src="script.js" defer></script>
-
-    <script>
-        function searchTable() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("tableBody");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (var j = 0; j < td.length; j++) {
-                    txtValue = td[j].textContent || td[j].innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                        break;
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
 </body>
 </html>

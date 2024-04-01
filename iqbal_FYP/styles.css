@@ -1,6 +1,7 @@
-/* ------------------------------------------------------------------- */
-/* Base design of PMS */
-/* Design in index.html */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in index.html with base design of PMS                                                 */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
 body {
     margin: 0;
     padding: 0;
@@ -124,8 +125,10 @@ nav ul li a.active {
   text-decoration: none;
 }
 
-/* ------------------------------------------------------------------- */
-/* CSS in anr.html */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in anr.html                                                                           */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
 /* CSS for the main content area */
 main {
   display: flex;
@@ -197,8 +200,10 @@ main {
 }
 
 
-/* ------------------------------------------------------------------- */
-/* CSS in attend.html */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in attend.html                                                                        */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
 /* CSS for choose date and class id */
 .choose-date,
 .class-id {
@@ -249,8 +254,10 @@ main {
   background-color: #002040;
 }
 
-/* ------------------------------------------------------------------- */
-/* CSS in attend2.html */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in attend2.html                                                                       */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
 .student-details {
   display: flex;
   justify-content: center;
@@ -287,8 +294,10 @@ main {
   cursor: pointer;
 }
 
-/* ------------------------------------------------------------------- */
-/* CSS in record.html */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in record.html                                                                        */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
 /* Table in records */
 .list-section {
   margin-top: 20px;
@@ -339,8 +348,10 @@ main {
 }
 
 
-/* ------------------------------------------------------------------- */
-/* CSS in sdm.html */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in sdm.html                                                                           */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
 /* New CSS classes for boxes in sdm.html */
 .sdm-box {
   width: 300px;
@@ -379,19 +390,72 @@ main {
   font-family: 'Roboto', sans-serif;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in manage.html                                                                        */
+/* ----------------------------------------------------------------------------------------------------------------------- */
 
+/* CSS for search box */
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px; /* Add space between search box and table */
+  margin-right: 200px;
+  margin-top: -40px;
+}
 
+.search-container input[type=text] {
+  width: 300px; /* Adjust the width as needed */
+  padding: 8px;
+  margin-right: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
 
-/* REVISE THE SORT BUTTON */
-/* CSS for manage.html */
+.search-container button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  margin-right: 5px; /* Add margin-right to create space between buttons */
+}
 
-.table-container {
-  width: calc(100% - 260px); /* Adjusted width to leave space for the left navigation bar */
-  margin-top: 20px;
-  margin-right: 100px;
-  margin-left: 260px;
-  border-collapse: collapse;
-  padding-left: 20px; /* Add padding to the left side */
+.search-container button:last-child {
+  margin-right: 0; /* Remove margin-right for the last button (clear button) */
+}
+
+.search-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Adjustments for the table box */
+.table-box {
+  border-radius: 8px; /* Add border-radius */
+  overflow: hidden; /* Ensure overflow is hidden */
+  width: 80%; /* Adjust width */
+  max-height: 520px; /* Adjust max-height */
+  margin: 0 auto; /* Center the table box */
+  margin-top: 40px;
+  margin-left: 130px;
+  overflow-y: auto; /* Add vertical scrollbar */
+}
+
+/* Adjustments for the table container */
+.table-container th,
+.table-container td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Increase padding for better spacing */
+  text-align: center;
+  width: auto; /* Set width to auto to allow content to dictate column width */
+}
+
+.table-container th:nth-child(2),
+.table-container td:nth-child(2) {
+  width: 60%; /* Adjust width of the second column */
+  text-align: left;
 }
 
 .table-container th,
@@ -399,30 +463,13 @@ main {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .table-container th {
   background-color: #f2f2f2;
 }
 
-/* Alternating row colors */
 .table-container tr:nth-child(even) {
   background-color: #f2f2f2;
-}
-
-/* Edit and delete buttons */
-.edit-btn,
-.delete-btn {
-  padding: 5px 10px;
-  margin-right: 5px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.edit-btn:hover,
-.delete-btn:hover {
-  background-color: #0056b3;
 }
