@@ -399,7 +399,7 @@ main {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px; /* Add space between search box and table */
-  margin-right: 200px;
+  margin-right: 60px;
   margin-top: -40px;
 }
 
@@ -472,4 +472,112 @@ main {
 
 .table-container tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in manage2.html                                                                       */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+.student-details-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-top: 40px;
+  margin-right: 150px;
+}
+
+.form-group.inline {
+  display: flex;
+  align-items: center;
+}
+
+.form-group.inline label {
+  margin-right: 10px;
+}
+
+.form-group.inline select {
+  width: 100px; /* Adjust width as needed */
+}
+
+/* Style for form groups within the container */
+.student-details-container .form-group {
+  margin-bottom: 20px;
+}
+
+/* Style for labels */
+.student-details-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Style for input and select elements */
+.student-details-container input[type="text"],
+.student-details-container select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Style for file input */
+.student-details-container input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* Style for submit button */
+.student-details-container .submit-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.student-details-container .submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.form-group.inline input[type="text"] {
+  width: 120px; /* Adjust width as needed */
+  margin-right: 20px;
+}
+
+.form-group.inline select {
+  width: 150px; /* Adjust width as needed */
+}
+
+.student-details-container .form-group.school input[type="text"] {
+  width: 0px; /* Adjust width as needed */
+}
+
+/* Style for IC Number form group */
+.student-details-container .form-group.ic-number {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for IC Number label */
+.student-details-container .form-group.ic-number label {
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* Style for IC Number input field */
+.student-details-container .form-group.ic-number input[type="text"] {
+  flex: 2;
+  width: calc(100% - 120px); /* Adjust the width as needed */
 }

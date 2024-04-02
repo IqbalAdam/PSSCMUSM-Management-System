@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSSCMUSM Management System - Register Student</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <!--Header with title and PSSCMUSM logo-->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <h1>PSSCMUSM Management System</h1>
+    </header>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="anr.html">Attendance & Records</a></li>
+                <li><a href="sdm.html"class="active">Student Data Management</a></li>
+                <li><a href="visual.html">Data Visualization</a></li>
+            </ul>
+            <button class="logout-btn">Logout</button>
+        </nav>
+    </div>
+
+    <!-- Navigation text -->
+    <div class="navigation-text">
+        Student Data Management > Student List > Register Student
+    </div>
+
+    <div class="student-details-container">
+        <form>
+            <div class="form-group">
+                <label for="fullName">Full Name as in IC</label>
+                <input type="text" id="fullName" name="fullName" oninput="this.value = this.value.toUpperCase()" required>
+            </div>
+            <div class="form-group inline">
+                <label for="matricID">Matric ID</label>
+                <input type="text" id="matricID" name="matricID" maxlength="10" required>
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="icNumber">IC Number:</label>
+                <input type="text" id="icNumber" name="icNumber" placeholder="Enter IC Number" maxlength="12">
+            </div>
+            
+            <div class="form-group">
+                <label for="school">School</label>
+                <input type="text" id="school" name="school" oninput="this.value = this.value.toUpperCase()" required>
+            </div>
+            <div class="form-group">
+                <label for="year">Year</label>
+                <select id="year" name="year" required>
+                    <option value="">Select Year</option>
+                    <option value="1st">1st</option>
+                    <option value="2nd">2nd</option>
+                    <option value="3rd">3rd</option>
+                    <option value="4th">4th</option>
+                    <option value="5th">5th</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="image">Image (.png format)</label>
+                <input type="file" id="image" name="image" accept=".png" required>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    <!--Referring to external JavaScript file-->
+    <script src="script.js" defer></script>
+</body>
+</html>

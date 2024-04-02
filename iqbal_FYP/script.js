@@ -128,3 +128,36 @@ function searchTable() {
     }
 }
 
+function registerStudent() {
+    // Redirect to manage2.html
+    window.location.href = "manage2.html";
+}
+
+//---------------------------------------------------------------------------------------------------------------------------
+//                                                 Script in manage2.html
+//---------------------------------------------------------------------------------------------------------------------------
+
+// Function to preview image before uploading
+function previewImage(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+    var imagePreview = document.getElementById('imagePreview');
+    imagePreview.src = reader.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+    }
+
+// Attach event listener to image input
+    document.getElementById('image').addEventListener('change', previewImage);
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the form and submit button
+        const form = document.getElementById("studentForm");
+        const submitBtn = document.getElementById("submitBtn");
+
+    // Add event listener to the form submit button
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+        });
+    });
