@@ -22,3 +22,8 @@ Uploaded on 2nd April 2024
 - Module 2 is working in progress
 - Sub module manage is complete but not functional
 - Same goes to manage2.html but submit button is not working to redirect to manage.html
+
+Uploaded on 3rd April 2024
+
+- Working on Arduino but still cant achieve objectives to
+  *Write information iin RFID card sucessfully
