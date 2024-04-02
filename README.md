@@ -16,3 +16,9 @@ Uploaded on 30th March 2024
 
 - Continue develop module 2
 - Table refresh problem need to be revised again.
+
+Uploaded on 2nd April 2024
+
+- Module 2 is working in progress
+- Sub module manage is complete but not functional
+- Same goes to manage2.html but submit button is not working to redirect to manage.html
