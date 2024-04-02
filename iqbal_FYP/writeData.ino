@@ -16,7 +16,7 @@ void setup() {
 
 void loop() {
   // Look for new cards.
-  if ( ! mfrc522.PICC_IsNewCardPresent() || ! mfrc522.PICC_ReadCardSerial()) {
+  if (!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()) {
     delay(50);
     return;
   }
@@ -27,20 +27,24 @@ void loop() {
   Serial.println();
 
   // Prepare data to write onto the card.
-  // You'll need to replace these dummy values with the actual data you want to write.
   String name = "Muhammad Iqbal Adam Bin Mohamad Saupi";
   String matricID = "150632";
+  String icNumber = "000222140229"; // Replace XXXXXXXXX with actual IC number
   String gender = "Male";
   String school = "Computer Science";
-  String image = "https://drive.google.com/file/d/1_1M6jZPN_nlTxsXkzAjBfTbnfUfPJ9_R/view?usp=drive_link"; // You might need to store image path instead of the actual image.
+  String image = "https://drive.google.com/file/d/1_1M6jZPN_nlTxsXkzAjBfTbnfUfPJ9_R/view?usp=drive_link";
 
   // Convert data to bytes if necessary.
   byte data[64]; // Adjust size as per your data size.
   name.getBytes(data, name.length() + 1);
+  matricID.getBytes(data + name.length() + 1, matricID.length() + 1);
+  icNumber.getBytes(data + name.length() + matricID.length() + 2, icNumber.length() + 1);
+  gender.getBytes(data + name.length() + matricID.length() + icNumber.length() + 3, gender.length() + 1);
+  school.getBytes(data + name.length() + matricID.length() + icNumber.length() + gender.length() + 4, school.length() + 1);
   // Repeat for other data attributes.
 
   // Write data onto the card.
-  mfrc522.MIFARE_Write(1, data, 64);
+  mfrc522.MIFARE_Write(1, data, 64); // Write to block 1
 
   Serial.println("Data written successfully.");
 
