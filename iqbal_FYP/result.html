@@ -5,6 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSSCMUSM Management System</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Custom CSS for the table */
+        .container {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-left: 370px;
+            margin-right: 150px;
+            margin-top: -40px;
+            margin-bottom: 50px;
+            border: 1px solid #ddd; /* Add border to the table */
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            border-right: 1px solid #ddd; /* Add right border to cells */
+        }
+
+        th:first-child,
+        td:first-child {
+            border-left: 1px solid #ddd; /* Add left border to first cell in each row */
+        }
+
+        th {
+            background-color: #004080;
+            color: #ffffff;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        td:nth-child(2) {
+            text-align: left;
+        }
+
+        .table-img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        /* Custom CSS for search box */
+        .search-container {
+            margin-top: -20px;
+            margin-left: 261px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        button.clear {
+            background-color: #f44336;
+        }
+    </style>
 </head>
 <body>
     <!--Header with title and PSSCMUSM logo-->
@@ -31,7 +112,192 @@
         Student Data Management > Student Results
     </div>
 
+    <!-- Search box -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search by Name or Matric ID">
+        <button onclick="searchTable()">Search</button>
+        <button class="clear" onclick="clearSearch()">Clear</button>
+    </div>
+
+    <!-- Container for the result table -->
+    <div class="container">
+        <table id="tableBody">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Matric ID</th>
+                    <th>Test 1</th>
+                    <th>Test 2</th>
+                    <th>Theory Test</th>
+                    <th class="actions">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample data -->
+                <tr>
+                    <td>1</td>
+                    <td>NUR AISYAH BINTI AZMAN</td>
+                    <td>163225</td>
+                    <td>85</td>
+                    <td>90</td>
+                    <td>88</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>MUHAMMAD HAFIZ BIN KAMARUL</td>
+                    <td>142993</td>
+                    <td>81</td>
+                    <td>83</td>
+                    <td>87</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>MUHAMMAD IQBAL ADAM BIN MOHAMAD SAUPI</td>
+                    <td>150632</td>
+                    <td>92</td>
+                    <td>88</td>
+                    <td>90</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>MOHD HAZIM BIN RAIS</td>
+                    <td>157483</td>
+                    <td>92</td>
+                    <td>87</td>
+                    <td>82</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>SITI SARINA BINTI OTHMAN</td>
+                    <td>178133</td>
+                    <td>90</td>
+                    <td>89</td>
+                    <td>87</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>NURIZATI BINTI MOHD ADNAN</td>
+                    <td>125894</td>
+                    <td>91</td>
+                    <td>81</td>
+                    <td>82</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>MUHAMMAD ARMAN BIN MOHD SHARIF</td>
+                    <td>147258</td>
+                    <td>90</td>
+                    <td>84</td>
+                    <td>94</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>ADI PUTRA BIN SOEKARNO</td>
+                    <td>164553</td>
+                    <td>83</td>
+                    <td>89</td>
+                    <td>89</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>MUHAMMAD AQIL SOFIY BIN MOHAMAD SAUPI</td>
+                    <td>150633</td>
+                    <td>92</td>
+                    <td>79</td>
+                    <td>91</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>SITI NUR SHAFIQAH BINTI KAMARUL</td>
+                    <td>147225</td>
+                    <td>90</td>
+                    <td>86</td>
+                    <td>86</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>MOHD SYARAFUDIN BIN NASER</td>
+                    <td>154932</td>
+                    <td>79</td>
+                    <td>93</td>
+                    <td>90</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>SITI AMINAH BINTI RAIS</td>
+                    <td>158932</td>
+                    <td>85</td>
+                    <td>79</td>
+                    <td>90</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>MOHD ARMAN BIN RAHMAN</td>
+                    <td>155814</td>
+                    <td>88</td>
+                    <td>88</td>
+                    <td>80</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>SITI NUR AINA BINTI ABDUL TALIB</td>
+                    <td>141219</td>
+                    <td>92</td>
+                    <td>88</td>
+                    <td>90</td>
+                    <td class="actions"><img src="pencil.png" alt="Edit" class="table-img"></td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
     <!--Referring to external JavaScript file-->
     <script src="script.js" defer></script>
+
+    <script>
+        function clearSearch() {
+            document.getElementById("searchInput").value = ""; // Clear the search input value
+            searchTable(); // Optionally, you can call the searchTable() function to reset the search results
+        }
+
+        function searchTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("tableBody");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                let found = false;
+                for (var j = 0; j < td.length; j++) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 </html>

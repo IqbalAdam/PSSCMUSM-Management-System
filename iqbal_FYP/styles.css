@@ -106,9 +106,9 @@ nav ul li a.active {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding-top: 150px; /* Adjusted padding-top */
-  margin-top: -50px; /* Move the boxes up */
-  margin-right: -190px; /* Move the boxes to the right */
+  padding-top: 150px;
+  margin-top: -50px; 
+  margin-right: -190px; 
 }
 
 #index .box {
@@ -121,7 +121,7 @@ nav ul li a.active {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 20px; /* Adjusted margin for spacing between boxes */
+  margin: 20px; 
   text-decoration: none;
 }
 
@@ -134,7 +134,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 150px; /* Adjust margin-top for spacing from header */
+  margin-top: 150px; 
   padding: 80px;
  
 }
@@ -207,7 +207,7 @@ main {
 /* CSS for choose date and class id */
 .choose-date,
 .class-id {
-    margin-bottom: 20px; /* Add some space between elements */
+    margin-bottom: 20px;
     margin-top: -200px;
 }
 
@@ -229,12 +229,11 @@ main {
     margin-left: 50px;
 }
 
-/* Adjust left of Class ID */
 .choose-date,
 .class-id {
-    display: inline-block; /* Display elements side by side */
-    vertical-align: top; /* Align elements to the top */
-    margin-left: 20px; /* Add some space between elements */
+    display: inline-block; 
+    vertical-align: top; 
+    margin-left: 20px; 
 }
 
 /* Start session button */
@@ -304,11 +303,11 @@ main {
 }
 
 .table-container {
-  width: calc(100% - 240px); /* Adjusted width to leave space for the left navigation bar */
+  width: calc(100% - 240px);
   margin-top: 10px;
   margin-left: 252px;
   border-collapse: collapse;
-  padding-left: 20px; /* Add padding to the left side */
+  padding-left: 20px; 
 }
 
 .table-container th, .table-container td {
@@ -323,13 +322,13 @@ main {
 
 /*Sort button beside percentage*/
 #sortBtn {
-  border: none; /* Remove border */
+  border: none;
   background: none;
   cursor: pointer;
   font-size: 16px;
   vertical-align: middle;
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margin */
+  padding: 0; 
+  margin: 0; 
 }
 
 /* Rotate arrow for ascending order */
@@ -398,13 +397,13 @@ main {
 .search-container {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px; /* Add space between search box and table */
+  margin-bottom: 20px; 
   margin-right: 60px;
   margin-top: -40px;
 }
 
 .search-container input[type=text] {
-  width: 300px; /* Adjust the width as needed */
+  width: 300px;
   padding: 8px;
   margin-right: 10px;
   border-radius: 4px;
@@ -420,11 +419,11 @@ main {
   background-color: #007bff;
   color: #fff;
   font-size: 16px;
-  margin-right: 5px; /* Add margin-right to create space between buttons */
+  margin-right: 5px; 
 }
 
 .search-container button:last-child {
-  margin-right: 0; /* Remove margin-right for the last button (clear button) */
+  margin-right: 0;
 }
 
 .search-container button:hover {
@@ -433,28 +432,28 @@ main {
 
 /* Adjustments for the table box */
 .table-box {
-  border-radius: 8px; /* Add border-radius */
-  overflow: hidden; /* Ensure overflow is hidden */
-  width: 80%; /* Adjust width */
-  max-height: 520px; /* Adjust max-height */
-  margin: 0 auto; /* Center the table box */
+  border-radius: 8px;
+  overflow: hidden; 
+  width: 80%; 
+  max-height: 520px; 
+  margin: 0 auto; 
   margin-top: 40px;
   margin-left: 130px;
-  overflow-y: auto; /* Add vertical scrollbar */
+  overflow-y: auto; 
 }
 
 /* Adjustments for the table container */
 .table-container th,
 .table-container td {
   border: 1px solid #ddd;
-  padding: 12px; /* Increase padding for better spacing */
+  padding: 12px; 
   text-align: center;
-  width: auto; /* Set width to auto to allow content to dictate column width */
+  width: auto; 
 }
 
 .table-container th:nth-child(2),
 .table-container td:nth-child(2) {
-  width: 60%; /* Adjust width of the second column */
+  width: 60%; 
   text-align: left;
 }
 
@@ -463,11 +462,12 @@ main {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
-  white-space: nowrap; /* Prevent text wrapping */
+  white-space: nowrap; 
 }
 
 .table-container th {
-  background-color: #f2f2f2;
+  background-color: #004080; 
+  color: #ffffff;
 }
 
 .table-container tr:nth-child(even) {
@@ -499,22 +499,19 @@ main {
 }
 
 .form-group.inline select {
-  width: 100px; /* Adjust width as needed */
+  width: 100px;
 }
 
-/* Style for form groups within the container */
 .student-details-container .form-group {
   margin-bottom: 20px;
 }
 
-/* Style for labels */
 .student-details-container label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-/* Style for input and select elements */
 .student-details-container input[type="text"],
 .student-details-container select {
   width: 100%;
@@ -524,7 +521,6 @@ main {
   font-size: 16px;
 }
 
-/* Style for file input */
 .student-details-container input[type="file"] {
   width: 100%;
   padding: 8px;
@@ -535,7 +531,6 @@ main {
   cursor: pointer;
 }
 
-/* Style for submit button */
 .student-details-container .submit-btn {
   padding: 10px 20px;
   border: none;
@@ -552,32 +547,29 @@ main {
 }
 
 .form-group.inline input[type="text"] {
-  width: 120px; /* Adjust width as needed */
+  width: 120px; 
   margin-right: 20px;
 }
 
 .form-group.inline select {
-  width: 150px; /* Adjust width as needed */
+  width: 150px; 
 }
 
 .student-details-container .form-group.school input[type="text"] {
-  width: 0px; /* Adjust width as needed */
+  width: 0px; 
 }
 
-/* Style for IC Number form group */
 .student-details-container .form-group.ic-number {
   display: flex;
   align-items: center;
 }
 
-/* Style for IC Number label */
 .student-details-container .form-group.ic-number label {
   flex: 1;
   margin-right: 10px;
 }
 
-/* Style for IC Number input field */
 .student-details-container .form-group.ic-number input[type="text"] {
   flex: 2;
-  width: calc(100% - 120px); /* Adjust the width as needed */
+  width: calc(100% - 120px);
 }
