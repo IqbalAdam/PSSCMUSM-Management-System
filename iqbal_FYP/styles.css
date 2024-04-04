@@ -422,8 +422,18 @@ main {
   margin-right: 5px; 
 }
 
+.search-container button.clear-button {
+  background-color: #ec0202; /* Change to your desired color */
+  color: #fff; /* Text color */
+}
+
+.search-container button.clear-button:hover {
+  background-color: #ec0202; /* Change to your desired color on hover */
+}
+
 .search-container button:last-child {
   margin-right: 0;
+  background-color: #28a745;
 }
 
 .search-container button:hover {
@@ -459,7 +469,7 @@ main {
 
 .table-container th,
 .table-container td {
-  border: 1px solid #ddd;
+  border: 1px solid #161212;
   padding: 8px;
   text-align: center;
   white-space: nowrap; 
@@ -470,8 +480,20 @@ main {
   color: #ffffff;
 }
 
+/* Make table header always stick on top */
+.table-container thead {
+  position: sticky;
+  top: 0;
+  background-color: #004080;
+  color: #ffffff; 
+}
+
 .table-container tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #ffffff;
+}
+
+.table-container tr:nth-child(odd) {
+  background-color: #ffffff;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------- */

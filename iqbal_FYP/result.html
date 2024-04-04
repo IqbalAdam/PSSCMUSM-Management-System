@@ -79,11 +79,16 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
-            margin-left: 10px;
+            margin-left: 2px;
         }
 
         button.clear {
-            background-color: #f44336;
+            background-color: #000000;
+        }
+
+        .search-container button:last-child {
+        margin-right: 0;
+        background-color: #ec0202;
         }
     </style>
 </head>
@@ -116,7 +121,7 @@
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Search by Name or Matric ID">
         <button onclick="searchTable()">Search</button>
-        <button class="clear" onclick="clearSearch()">Clear</button>
+        <button class="clear-red-button" onclick="clearSearch()">Clear</button>
     </div>
 
     <!-- Container for the result table -->
