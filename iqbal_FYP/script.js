@@ -1,3 +1,7 @@
+//---------------------------------------------------------------------------------------------------------------------------
+//                                                 Script in attend2.html
+//---------------------------------------------------------------------------------------------------------------------------
+
 document.addEventListener("DOMContentLoaded", function() {
     // Select the end session button
     const endSessionBtn = document.querySelector('.end-session-btn');
@@ -13,6 +17,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+//---------------------------------------------------------------------------------------------------------------------------
+//                                                 Script in record.html
+//---------------------------------------------------------------------------------------------------------------------------
 
 $(document).ready(function() {
     // Function to sort table data based on column index and order
@@ -161,3 +169,33 @@ function previewImage(event) {
         event.preventDefault();
         });
     });
+
+//---------------------------------------------------------------------------------------------------------------------------
+//                                                 Script in overall.html
+//---------------------------------------------------------------------------------------------------------------------------
+
+$(document).ready(function(){
+    $(".dropbtn").click(function(){
+        $(".dropdown-content").toggle();
+    });
+
+    // Update selected month when user clicks on dropdown item
+    $(".dropdown-content a").click(function(){
+        console.log("Dropdown item clicked");
+        var selectedMonth = $(this).text(); // Get the text content of the clicked item
+        console.log("Selected month:", selectedMonth);
+        $("#selected-month").val(selectedMonth); // Set the value of the input box
+        console.log("Input box value:", $("#selected-month").val());
+    });
+
+    // Close the dropdown menu if the user clicks outside of it
+    $(document).click(function(event) {
+        if (!$(event.target).closest('.dropdown').length) {
+            $(".dropdown-content").hide();
+            console.log("Dropdown menu closed");
+        }
+    });
+});
+
+
+
