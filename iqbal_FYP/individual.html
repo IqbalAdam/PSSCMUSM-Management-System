@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSSCMUSM Management System</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <!--Header with title and PSSCMUSM logo-->
     <header>
         <div class="logo">
-            <img src="logo.png" alt="Logo">
+            <img src="images/logo.png" alt="Logo">
         </div>
         <h1>PSSCMUSM Management System</h1>
     </header>
@@ -27,10 +26,182 @@
         </nav>
     </div>
 
-    <!-- Navigation text -->
+    <!--Navigation header inside body-->
     <div class="navigation-text">
-        Data Visualization > Individual Data<br><br>
-        Choose student to view their data
+        Student Data Management > Student List<br><br>
+        List of Student Currently Enrolled this Course
+    </div>
+
+    <!-- Search box -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search by Name or Matric ID">
+        <button onclick="searchTable()">Search</button>
+        <button class="clear-button" onclick="clearSearch()">Clear</button> 
+    </div>
+
+
+    <!-- Table box container -->
+    <div class="table-box">
+        <!-- Table container -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Matric ID</th>
+                        <th>Gender</th>
+                        <th>Year</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Example rows -->
+                    <tr>
+                        <td>1</td>
+                        <td>NUR AISYAH BINTI AZMAN</td>
+                        <td>163225</td>
+                        <td>Female</td>
+                        <td>2nd</td>
+                        <td>
+                            <button class="view-data">View Data</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>MUHAMMAD HAFIZ BIN KAMARUL</td>
+                        <td>142993</td>
+                        <td>Male</td>
+                        <td>3rd</td>
+                        <td>
+                            <button class="view-data">View Data</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>MUHAMMAD IQBAL ADAM BIN MOHAMAD SAUPI</td>
+                        <td>150632</td>
+                        <td>Male</td>
+                        <td>4th</td>
+                        <td>
+                            <button class="view-data">View Data</button>
+                        </td>
+                        <tr>
+                            <td>4</td>
+                            <td>MOHD HAZIM BIN RAIS</td>
+                            <td>157483</td>
+                            <td>Male</td>
+                            <td>5th</td>
+                            <td>
+                                <button class="view-data">View Data</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>SITI SARINA BINTI OTHMAN</td>
+                            <td>178133</td>
+                            <td>Female</td>
+                            <td>2nd</td>
+                            <td>
+                                <button class="view-data">View Data</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>NURIZATI BINTI MOHD ADNAN</td>
+                            <td>125894</td>
+                            <td>Female</td>
+                            <td>1st</td>
+                            <td>
+                                <button class="view-data">View Data</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>MUHAMMAD ARMAN BIN MOHD SHARIF</td>
+                            <td>147258</td>
+                            <td>Male</td>
+                            <td>3rd</td>
+                            <td>
+                                <button class="view-data">View Data</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>ADI PUTRA BIN SOEKARNO</td>
+                            <td>164553</td>
+                            <td>Male</td>
+                            <td>1st</td>
+                            <td>
+                                <button class="view-data">View Data</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>MUHAMMAD AQIL SOFIY BIN MOHAMAD SAUPI</td>
+                            <td>150633</td>
+                            <td>Male</td>
+                            <td>2nd</td>
+                            <td>
+                                <button class="view-data">View Data</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>SITI NUR SHAFIQAH BINTI KAMARUL</td>
+                            <td>147225</td>
+                            <td>Female</td>
+                            <td>4th</td>
+                            <td>
+                                <button class="view-data">View Data</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>MOHD SYARAFUDIN BIN NASER</td>
+                            <td>154932</td>
+                            <td>Male</td>
+                            <td>3rd</td>
+                            <td>
+                                <button class="view-data">View Data</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>SITI AMINAH BINTI RAIS</td>
+                            <td>158932</td>
+                            <td>Female</td>
+                            <td>3rd</td>
+                            <td>
+                                <button class="view-data">View Data</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>MOHD ARMAN BIN RAHMAN</td>
+                            <td>155814</td>
+                            <td>Male</td>
+                            <td>3rd</td>
+                            <td>
+                                <button class="view-data">View Data</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>SITI NUR AINA BINTI ABDUL TALIB</td>
+                            <td>141219</td>
+                            <td>Female</td>
+                            <td>4th</td>
+                            <td>
+                                <button class="view-data">View Data</button>
+                            </td>
+                        </tr>
+                        
+                    </tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!--Referring to external JavaScript file-->
