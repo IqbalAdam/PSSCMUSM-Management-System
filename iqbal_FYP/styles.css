@@ -300,10 +300,7 @@ main {
 /*                               CSS in record.html                                                                        */
 /* ----------------------------------------------------------------------------------------------------------------------- */
 
-/* Table in records */
-.list-section {
-  margin-top: 20px;
-}
+
 
 .table-container {
   width: calc(100% - 240px);
@@ -313,11 +310,6 @@ main {
   padding-left: 20px; 
 }
 
-.table-container th, .table-container td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-}
 
 .table-container th {
   background-color: #f2f2f2;
@@ -347,6 +339,25 @@ main {
 /* Alternating row colors */
 .table-container tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+
+/* Adjustments for the table in record.html */
+#recordTable th:nth-child(2),
+#recordTable td:nth-child(2) {
+  width: 440px; /* Adjust the width as needed */
+}
+
+/* Add rotating animation for filter button icons */
+.rotate180 {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+/* Resize the dropdown.png image */
+img#dateFilterBtn,
+img#percentageFilterBtn {
+    width: 16px; /* Adjust the width as needed */
+    height: 16px; /* Adjust the height as needed */
 }
 
 

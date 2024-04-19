@@ -22,90 +22,56 @@ document.addEventListener("DOMContentLoaded", function() {
 //                                                 Script in record.html
 //---------------------------------------------------------------------------------------------------------------------------
 
-$(document).ready(function() {
-    // Function to sort table data based on column index and order
-    function sortTable(table, column, order) {
-        var tbody = table.find('tbody');
-        var rows = tbody.find('tr').toArray();
+let dateFilterAscending = true;
+let percentageFilterAscending = true;
 
-        rows.sort(function(a, b) {
-            var aValue = $(a).find('td').eq(column).text();
-            var bValue = $(b).find('td').eq(column).text();
-
-            if (column === 2 || column === 4) { // Column index 2 is Date, 4 is Percentage
-                // Date format: yyyy-mm-dd
-                aValue = new Date(aValue);
-                bValue = new Date(bValue);
-            } else if (column === 3) { // Column index 3 is Overall Attendance
-                // Parse integers from "x/y" format
-                aValue = parseInt(aValue.split('/')[0]);
-                bValue = parseInt(bValue.split('/')[0]);
-            }
-
-            if (order === 'asc') {
-                return aValue > bValue ? 1 : -1;
-            } else {
-                return aValue < bValue ? 1 : -1;
-            }
-        });
-
-        tbody.empty().append(rows);
-    }
-
-    // Sort table by date in descending order on page load
-    var table = $('.table-container');
-    sortTable(table, 2, 'desc');
-    $('#dateSortBtn img').toggleClass('upside-down', true);
-
-    // Event listener for date sort button
-    $('#dateSortBtn').click(function() {
-        var table = $('.table-container');
-        var order = $(this).hasClass('asc') ? 'desc' : 'asc';
-
-        sortTable(table, 2, order);
-        $(this).toggleClass('asc', order === 'asc');
-        $(this).toggleClass('desc', order === 'desc');
-        $(this).find('img').toggleClass('upside-down', order === 'desc');
-    }).click();
-
-    // Event listener for percentage sort button
-    $('#sortBtn').click(function() {
-        var table = $('.table-container');
-        var order = $(this).hasClass('asc') ? 'desc' : 'asc';
-
-        sortTable(table, 4, order);
-        $(this).toggleClass('asc', order === 'asc');
-        $(this).toggleClass('desc', order === 'desc');
+function toggleDateFilter() {
+    const rows = [...document.querySelectorAll("#recordTable tbody tr")];
+    const sortedRows = rows.sort((a, b) => {
+        const dateA = new Date(a.children[2].textContent.split('/').reverse().join('/'));
+        const dateB = new Date(b.children[2].textContent.split('/').reverse().join('/'));
+        if (dateFilterAscending) {
+            return dateA - dateB;
+        } else {
+            return dateB - dateA;
+        }
     });
+    renderSortedRows(sortedRows);
+    dateFilterAscending = !dateFilterAscending;
+    rotateIcon(this);
+}
 
-    // Function to toggle sort button icons
-    function toggleSortIcon(button) {
-        button.find('.sort-icon').toggleClass('fa-chevron-up fa-chevron-down');
-    }
-
-    // Event listener for sort buttons
-    $('.sortBtn').click(function() {
-        toggleSortIcon($(this));
+function togglePercentageFilter() {
+    const rows = [...document.querySelectorAll("#recordTable tbody tr")];
+    const sortedRows = rows.sort((a, b) => {
+        const percentageA = parseFloat(a.children[4].textContent);
+        const percentageB = parseFloat(b.children[4].textContent);
+        if (percentageFilterAscending) {
+            return percentageA - percentageB;
+        } else {
+            return percentageB - percentageA;
+        }
     });
-});
+    renderSortedRows(sortedRows);
+    percentageFilterAscending = !percentageFilterAscending;
+    rotateIcon(this);
+}
 
-//Change date format in record.html
-// Get all table rows
-const rows = document.querySelectorAll('.table-container tbody tr');
+function renderSortedRows(sortedRows) {
+    const tableBody = document.getElementById("recordTableBody");
+    tableBody.innerHTML = "";
+    sortedRows.forEach(row => {
+        tableBody.appendChild(row);
+    });
+}
 
-// Iterate through each row
-rows.forEach(row => {
-    // Get the date cell
-    const dateCell = row.querySelector('td:nth-child(3)');
-    // Extract the date value
-    const dateValue = dateCell.textContent.trim();
-    // Split the date by '-' to get year, month, and day
-    const [year, month, day] = dateValue.split('-');
-    // Format the date as DD/MM/YYYY
-    const formattedDate = `${day}/${month}/${year}`;
-    // Update the cell with the new date format
-    dateCell.textContent = formattedDate;
-});
+function rotateIcon(button) {
+    button.classList.toggle("rotate180");
+}
+
+// Add event listeners to filter buttons
+document.getElementById("dateFilterBtn").addEventListener("click", toggleDateFilter);
+document.getElementById("percentageFilterBtn").addEventListener("click", togglePercentageFilter);
 
 //---------------------------------------------------------------------------------------------------------------------------
 //                                                 Script in manage.html
