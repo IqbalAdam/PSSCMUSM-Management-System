@@ -6,28 +6,37 @@
     <title>Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="bg-img">
-        <div class="content">
-            <header>Welcome to PSSCMUSM Management System</header>
-            <form action="#">
-               <div class="field">
-                  <span class="fa fa-user"></span>
-                  <input type="text" required placeholder="Email or Phone">
-               </div>
-               <div class="field space">
-                  <span class="fa fa-lock"></span>
-                  <input type="password" class="pass-key" required placeholder="Password">
-                  <span class="show">SHOW</span>
-               </div>
-               <div class="pass">
-                  <a href="#">Forgot Password?</a>
-               </div>
-               <div class="field">
-                  <input type="submit" value="LOGIN">
-               </div>
-            </form>
-         </div>
-      </div>
-   </body>
+<body class="container">
+    <div class="login-box">
+        <h2>Login</h2>
+        <form id="loginForm" action="login.php" method="post">
+            <div class="textbox">
+                <input type="text" placeholder="Username" id="username" name="username" required>
+            </div>
+            <div class="textbox">
+                <input type="password" placeholder="Password" id="password" name="password" required>
+            </div>
+            <input type="submit" class="btn" value="Log In">
+        </form>
+    </div>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var form = this;
+            var formData = new FormData(form);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        window.location.href = 'index.html';
+                    } else {
+                        console.log('Login failed');
+                    }
+                }
+            };
+            xhr.open(form.method, form.action, true);
+            xhr.send(formData);
+        });
+    </script>
+</body>
 </html>

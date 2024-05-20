@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +25,7 @@
     <div class="container">
         <nav>
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.php" class="active">Home</a></li>
                 <li><a href="anr.html">Attendance & Records</a></li>
                 <li><a href="sdm.html">Student Data Management</a></li>
                 <li><a href="visual.html">Data Visualization</a></li>
@@ -25,13 +33,9 @@
             <button class="logout-btn">Logout</button>
         </nav>
     </div>
-
-    <!-- Navigation text -->
     <div class="navigation-text">
         Home
     </div>
-
-    <!-- Boxes similar to anr.html -->
     <main>
         <a href="anr.html" class="box anr">
             <h2>Attendance <br>& Records</h2>
@@ -49,14 +53,10 @@
             <p><br>View data in graphical format</p>
         </a>
     </main>
-
-    <!--Referring to external JavaScript file-->
     <script src="script.js" defer></script>
     <script>
-        // Add event listener to the logout button
         document.querySelector('.logout-btn').addEventListener('click', function() {
-            // Redirect to login.html
-            window.location.href = 'login.html';
+            window.location.href = 'logout.php';
         });
     </script>
 </body>

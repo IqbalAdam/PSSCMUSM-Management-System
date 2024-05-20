@@ -627,3 +627,51 @@ img#percentageFilterBtn {
   width: 600px;
   height: 400px;
 }
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                                    CSS in login.html                                                                    */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+.login-box {
+  width: 300px;
+  padding: 40px;
+  margin-left: 600px;
+  margin-top: 150px;
+  position: relative;
+  background: #fff;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.textbox {
+  margin-bottom: 20px;
+}
+
+.textbox input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
