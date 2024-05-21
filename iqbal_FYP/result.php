@@ -158,7 +158,7 @@
                                     <td>" . $row["test_1"] . "</td>
                                     <td>" . $row["test_2"] . "</td>
                                     <td>" . $row["theory"] . "</td>
-                                    <td class='actions'><img src='images/pencil.png' alt='Edit' class='table-img'></td>
+                                    <td class='actions'><a href='edit.php?matric_id=" . $row["matric_id"] . "'><img src='images/pencil.png' alt='Edit' class='table-img'></a></td>
                                   </tr>";
                         }
                     } else {
