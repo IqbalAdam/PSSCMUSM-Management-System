@@ -136,3 +136,35 @@ function previewImage(event) {
         });
     });
 
+
+
+
+
+
+
+
+
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const deleteId = this.getAttribute('data-id');
+            if (confirm("Are you sure you want to delete this student?")) {
+                // Send AJAX request to delete_student.php
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            // Update table or show a message
+                            // For simplicity, you can reload the page
+                            location.reload();
+                        } else {
+                            console.error('Error:', xhr.statusText);
+                        }
+                    }
+                };
+                xhr.open('POST', 'delete_student.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send('delete_id=' + deleteId);
+            }
+        });
+    });
+    
