@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Execute SQL statement
             if ($stmt->execute()) {
-                echo "New record created successfully";
+                echo "<br><br><br><br><br><br><br><br><br><br><br><br><br>Registration Successful!";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
@@ -54,3 +54,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--Referring to external JavaScript file-->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!--Header with title and PSSCMUSM logo-->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <h1>PSSCMUSM Management System</h1>
+    </header>
+
+</body>
+</html>

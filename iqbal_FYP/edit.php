@@ -44,9 +44,23 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Student Results</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--Referring to external JavaScript file-->
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <h1>Edit Student Results</h1>
+    <!--Header with title and PSSCMUSM logo-->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <h1>PSSCMUSM Management System</h1>
+    </header>
+    
+
+    <h1><br><br><br><br><br><br><br>Edit Student Results</h1>
     <form method="POST">
         <label for="full_name">Full Name:</label>
         <input type="text" id="full_name" name="full_name" value="<?php echo $row['full_name']; ?>" readonly><br><br>
