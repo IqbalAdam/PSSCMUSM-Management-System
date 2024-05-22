@@ -20,7 +20,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="anr.html">Attendance & Records</a></li>
                 <li><a href="sdm.html">Student Data Management</a></li>
-                <li><a href="visual.html" class="active" >Data Visualization</a></li>
+                <li><a href="visual.html" class="active">Data Visualization</a></li>
             </ul>
             <button class="logout-btn">Logout</button>
         </nav>
@@ -38,7 +38,6 @@
         <button onclick="searchTable()">Search</button>
         <button class="clear-button" onclick="clearSearch()">Clear</button> 
     </div>
-
 
     <!-- Table box container -->
     <div class="table-box">
@@ -80,7 +79,7 @@
                                       </tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='7'>No results found</td></tr>";
+                            echo "<tr><td colspan='6'>No results found</td></tr>";
                         }
     
                         $conn->close();

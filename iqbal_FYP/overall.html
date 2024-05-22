@@ -19,20 +19,36 @@
         </div>
         <h1>PSSCMUSM Management System</h1>
     </header>
-    <div class="container">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="anr.html">Attendance & Records</a></li>
-                <li><a href="sdm.html">Student Data Management</a></li>
-                <li><a href="visual.html" class="active">Data Visualization</a></li>
-            </ul>
-            <button class="logout-btn">Logout</button>
-        </nav>
-    </div>
+    
 
     <div class="navigation-text">
         Data Visualization > Overall Data<br><br><br><br>Attendance Records
+    </div>
+
+    <!-- Dropdown menus and button -->
+    <div class="container dropdown-container">
+        <label for="monthSelect">Choose Month:</label>
+        <select id="monthSelect">
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+        </select>
+
+        <label for="yearSelect">Choose Year:</label>
+        <select id="yearSelect">
+            <!-- JavaScript will populate this with a range of years -->
+        </select>
+
+        <button id="displayDataBtn">Display Data</button>
     </div>
 
     <!-- Graph container -->
@@ -108,6 +124,37 @@
             data: attendanceData,
             options: attendanceOptions
         });
+
+        // Populate year dropdown with a range of years
+        const currentYear = new Date().getFullYear();
+        const yearSelect = document.getElementById('yearSelect');
+        for (let year = currentYear - 0; year <= currentYear + 20; year++) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        }
+    
+        // Add event listener to the button
+        document.getElementById('displayDataBtn').addEventListener('click', function() {
+            const selectedMonth = document.getElementById('monthSelect').value;
+            const selectedYear = document.getElementById('yearSelect').value;
+            // Update the chart data based on the selected month and year
+            updateChartData(selectedMonth, selectedYear);
+        });
+    
+        function updateChartData(month, year) {
+            // Here you would fetch new data based on the selected month and year.
+            // This example will just log the values and use the same dummy data.
+            console.log(`Selected Month: ${month}, Selected Year: ${year}`);
+    
+            // Dummy logic to update chart (use real data in a real scenario)
+            attendanceData.labels = ["4/2/2024", "10/2/2024", "13/2/2024", "20/2/2024", "23/2/2024", "29/2/2024"];
+            attendanceData.datasets[0].data = [50, 60, 45, 55, 70, 65];
+            attendanceData.datasets[1].data = [25, 15, 30, 20, 5, 10];
+    
+            attendanceChart.update();
+        }
     </script>
     
 </body>

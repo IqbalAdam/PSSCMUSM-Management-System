@@ -168,3 +168,27 @@ function previewImage(event) {
         });
     });
     
+
+//---------------------------------------------------------------------------------------------------------------------------
+//                                                 Script in visual.html
+//---------------------------------------------------------------------------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", function() {
+        const yearSelect = document.getElementById('year-select');
+        const currentYear = new Date().getFullYear();
+        const startYear = 2000; // Adjust as needed
+    
+        for (let year = startYear; year <= currentYear; year++) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        }
+    
+        document.getElementById('display-data-btn').addEventListener('click', function() {
+            const month = document.getElementById('month-select').value;
+            const year = document.getElementById('year-select').value;
+            // Implement the logic to display data based on the selected month and year
+            console.log(`Displaying data for ${month} ${year}`);
+        });
+    });
+    
