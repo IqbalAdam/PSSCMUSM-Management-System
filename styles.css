@@ -1,0 +1,962 @@
+/* Fix color when hover button #002040 */
+/* Button color #004080                */
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in index.html with base design of PMS                                                 */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e6f7ff;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Header style */
+header {
+background-color: #004080; 
+color: #fff;
+padding: 20px;
+text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
+position: fixed; 
+top: 0; 
+width: 100%; 
+z-index: 1000; 
+}
+
+/* Space between PSSCMUSM logo and text in header*/
+h1 {
+margin-left: 10px;
+font-family: sans-serif;
+}
+
+/* PSSCMUSM logo in header*/
+.logo img {
+height: 70px;
+margin-right: 10px;
+}
+
+.container {
+display: flex;
+flex-direction: row;
+padding-top: 90px;
+}
+
+/* CSS for the left-side navigation bar*/
+nav {
+background-color: #d9e6f2;
+padding: 20px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+position: fixed;
+top: 120px;
+bottom: 0;
+}
+
+nav ul {
+list-style-type: none;
+padding: 0;
+margin: 0;
+}
+
+nav ul li {
+margin-bottom: 10px;
+margin-bottom: 20px;
+}
+
+/* CSS for navigation bar */
+nav ul li a {
+color: #fff;
+background-color: #004080;
+text-decoration: none;
+display: block;
+padding: 10px;
+border-radius: 5px; 
+margin-bottom: 20px; 
+}
+
+nav ul li a.active {
+font-weight: bold;
+}
+
+/* Log Out button in side navigation bar */
+.logout-btn {
+margin-top: auto; 
+width: 100%;
+padding: 10px;
+background-color: #004080;
+color: #fff;
+border: none;
+cursor: pointer;
+}
+
+/* Navigation text in the body */
+.navigation-text {
+font-size: 18px;
+font-weight: bold;
+text-align: left;
+margin-top: 55px; 
+margin-left: 350px;
+}
+
+/* Common CSS ended */
+
+/* CSS for the boxes in index.html */
+#index main {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+padding-top: 150px;
+margin-top: -50px; 
+margin-right: -190px; 
+}
+
+#index .box {
+width: 300px;
+height: 300px;
+background-color: #fff;
+border: 2px solid #004080;
+border-radius: 12px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin: 20px; 
+text-decoration: none;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in anr.html                                                                           */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+/* CSS for the main content area */
+main {
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 150px; 
+padding: 80px;
+
+}
+
+.tiles {
+display: flex;
+justify-content: space-around;
+margin-top: 50px;
+}
+
+.tile {
+padding: 20px;
+background-color: #004080;
+color: #fff;
+text-decoration: none;
+}
+
+.tile:hover {
+background-color: #002040;
+}
+
+/* CSS for the boxes */
+.box {
+width: 300px;
+height: 300px;
+background-color: #fff;
+border: 2px solid #004080;
+border-radius: 12px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin-right: 100px;
+margin-left: 350px;
+margin-top: -100px;
+text-decoration: none;
+}
+
+.box h2 {
+margin-top: 20px;
+font-size: 24px;
+text-align: center;
+color: #004080; 
+font-family: 'Roboto', sans-serif; 
+}
+
+.box img {
+margin-top: 20px;
+width: 100px; 
+height: auto;
+}
+
+.box p {
+margin-top: 10px; 
+text-align: center;
+color: #333; 
+font-family: 'Roboto', sans-serif; 
+}
+
+/* Adjust space between boxes */
+.records {
+margin-left: 30px; 
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in attend.html                                                                        */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+/* CSS for choose date and class id */
+.choose-date,
+.class-id {
+  margin-bottom: 20px;
+}
+
+.choose-date label,
+.class-id label {
+  display: block;
+  margin-bottom: 20px;
+  margin-left: 50px;
+}
+
+.choose-date input,
+.class-id input {
+  width: 200px; 
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 50px;
+}
+
+.choose-date,
+.class-id {
+  display: inline-block; 
+  vertical-align: top; 
+  margin-left: 20px; 
+}
+
+/* Container for class setup section */
+.class-setup-container {
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+}
+
+.start-session-btn {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.start-session-btn .start-session {
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.start-session-btn .start-session:hover {
+  background-color: #002040;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in attend2.html                                                                       */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+.student-details {
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 100px;
+margin-left: 50px;
+}
+
+.student-details-table {
+width: 60%;
+border-collapse: collapse;
+margin: 20px;
+background-color: #ffffff; 
+border: 1px solid #ddd;
+border-radius: 8px;
+padding: 20px;
+box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+}
+
+.student-details-table td {
+padding: 10px;
+border-bottom: 1px solid #ddd;
+}
+
+.student-picture {
+width: 150px;
+height: 150px;
+padding: 10px;
+}
+
+.student-picture img {
+width: 200px;
+height: 200px;
+object-fit: cover;
+
+}
+
+.end-session-btn {
+background-color: #004080;
+color: #fff;
+border: none;
+padding: 10px 20px;
+border-radius: 5px;
+cursor: pointer;
+display: block;
+margin: 20px auto;
+}
+
+.end-session-btn:hover {
+background-color: #002040;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in record.html                                                                        */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+.table-container {
+  width: calc(100% - 240px);
+  margin-top: 10px;
+  margin-left: 252px;
+  border-collapse: collapse;
+  padding-left: 20px; 
+}
+
+.table-container th {
+  background-color: #f2f2f2;
+}
+
+/*Sort button beside percentage*/
+#sortBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  vertical-align: middle;
+  padding: 0; 
+  margin: 0; 
+}
+
+/* Rotate arrow for ascending order */
+#sortBtn.asc {
+  transform: rotate(0deg); 
+}
+
+/* Rotate arrow for descending order */
+#sortBtn.desc {
+  transform: rotate(180deg); 
+}
+
+/* Alternating row colors */
+.table-container tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Adjustments for the table in record.html */
+#recordTable th:nth-child(2),
+#recordTable td:nth-child(2) {
+  width: 380px; /* Adjust the width as needed */
+}
+
+/* Add rotating animation for filter button icons */
+.rotate180 {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+/* Resize the dropdown.png image */
+img#dateFilterBtn,
+img#percentageFilterBtn {
+    width: 16px; /* Adjust the width as needed */
+    height: 16px; /* Adjust the height as needed */
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in sdm.html                                                                           */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+/* New CSS classes for boxes in sdm.html */
+.sdm-box {
+  width: 300px;
+  height: 300px;
+  background-color: #fff;
+  border: 2px solid #004080;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: -60px; 
+  margin-left: 190px; 
+  margin-top: -100px;
+  text-decoration: none;
+}
+
+.sdm-box h2 {
+  margin-top: 20px;
+  font-size: 24px;
+  text-align: center;
+  color: #004080; 
+  font-family: 'Roboto', sans-serif; 
+}
+
+.sdm-box img {
+  margin-top: 20px;
+  width: 100px; 
+  height: auto;
+}
+
+.sdm-box p {
+  margin-top: 10px; 
+  text-align: center;
+  color: #333; 
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in manage.php                                                                         */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+/* CSS for search box */
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px; 
+  margin-right: 60px;
+  margin-top: -40px;
+}
+
+.search-container input[type=text] {
+  width: 300px;
+  padding: 8px;
+  margin-right: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.search-container button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  margin-right: 5px; 
+}
+
+.search-container button.clear-button {
+  background-color: #ec0202; /* Change to your desired color */
+  color: #fff; /* Text color */
+}
+
+.search-container button.clear-button:hover {
+  background-color: #ec0202; /* Change to your desired color on hover */
+}
+
+.search-container button:last-child {
+  margin-right: 0;
+  background-color: #28a745;
+}
+
+.search-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Adjustments for the table box */
+.table-box {
+  border-radius: 8px;
+  overflow: hidden; /* Hide overflow */
+  width: calc(100% - 260px); /* Adjust the width to fit within container */
+  max-height: 520px; 
+  margin: 0 auto; 
+  margin-top: 40px;
+  margin-left: 100px;
+  padding: 0 10px; /* Add padding to ensure content doesn't touch edges */
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  overflow-y: scroll;
+}
+
+/* Adjustments for the table container */
+.table-container th,
+.table-container td {
+  border: 1px solid #ddd;
+  padding: 12px; 
+  text-align: center;
+  width: auto; 
+}
+
+.table-container th:nth-child(2),
+.table-container td:nth-child(2) {
+  width: 60%; 
+  text-align: left;
+}
+
+.table-container th,
+.table-container td {
+  border: 1px solid #161212;
+  padding: 8px;
+  text-align: center;
+  white-space: nowrap; 
+}
+
+.table-container th {
+  background-color: #004080; 
+  color: #ffffff;
+}
+
+/* Make table header always stick on top */
+.table-container thead {
+  position: sticky;
+  top: 0;
+  background-color: #004080;
+  color: #ffffff; 
+}
+
+.table-container tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.table-container tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in manage2.html                                                                       */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+.student-details-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-top: 90px;
+  margin-right: 310px;
+}
+
+.form-group.inline {
+  display: flex;
+  align-items: center;
+}
+
+.form-group.inline label {
+  margin-right: 10px;
+}
+
+.form-group.inline select {
+  width: 100px;
+}
+
+.student-details-container .form-group {
+  margin-bottom: 20px;
+}
+
+.student-details-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.student-details-container input[type="text"],
+.student-details-container select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.student-details-container input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.student-details-container .submit-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.student-details-container .submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.form-group.inline input[type="text"] {
+  width: 120px; 
+  margin-right: 20px;
+}
+
+.form-group.inline select {
+  width: 150px; 
+}
+
+.student-details-container .form-group.school input[type="text"] {
+  width: 0px; 
+}
+
+.student-details-container .form-group.ic-number {
+  display: flex;
+  align-items: center;
+}
+
+.student-details-container .form-group.ic-number label {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.student-details-container .form-group.ic-number input[type="text"] {
+  flex: 2;
+  width: calc(100% - 120px);
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                               CSS in individual.html                                                                    */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+/* Adjustments for the table container */
+.table-container th:nth-child(2),
+.table-container td:nth-child(2) {
+  width: 30%; /* Adjust the width as needed */
+  text-align: left; /* Align text to the left */
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                                    CSS in login.html                                                                    */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.login-box {
+  width: 300px;
+  padding: 40px;
+  margin: 20px auto 0 auto; 
+  margin-top: 150px;
+  background: #fff;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.textbox {
+  margin-bottom: 20px;
+}
+
+.textbox input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.btn {
+  margin-left: 10px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 10px; /* Added margin to create a gap between buttons */
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                                    CSS in edit.php                                                                      */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+/* Styles specific to edit.php */
+.edit-page .edit-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-page .student-image {
+  text-align: center;
+  margin-bottom: -100px;
+}
+
+.edit-page .student-image img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.edit-page .student-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.edit-page .student-details input {
+  width: 100%;
+}
+
+.edit-page .test-scores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.edit-page .test-score input {
+  width: 100%;
+}
+
+.edit-page button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #004080;
+  color: #fff;
+  cursor: pointer;
+}
+
+.edit-page button[type="submit"]:hover {
+  background-color: #002040;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                                    CSS in overall.html                                                                  */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+/* Styles for dropdowns and button in dropdown-container */
+.dropdown-container {
+  margin-left: 880px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  margin-bottom: -50px;
+}
+
+.dropdown-container label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.dropdown-container select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.dropdown-container select:focus {
+  border-color: #007bff;
+}
+
+#displayDataBtn {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#displayDataBtn:hover {
+  background-color: #0056b3;
+}
+
+#displayDataBtn:focus {
+  outline: none;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                                    CSS in view_stat.php                                                                 */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.attendance-table th,
+.attendance-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.attendance-table th {
+  background-color: #004080;
+  color: #ffffff;
+}
+
+.attendance-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.attendance-table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.view-stat .student-details {
+  margin-top: 50px;
+  margin-bottom: 40px;
+  padding: 20px;
+  border: 2px solid #004080;
+  background-color: #f9f9f9;
+  width: 1000px;
+  margin-left: 360px;
+  margin-right: 170px;
+}
+
+.view-stat .student-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 1000px;
+  margin-right: 20px;
+}
+
+.view-stat .student-image {
+  margin-top: 8px;
+  width: 260px; 
+  height: 210px; 
+  object-fit: cover; 
+  border: 2px solid #004080;
+}
+
+.view-stat .info-table, .view-stat .scores-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.view-stat .info-table th, .view-stat .scores-table th {
+  background-color: #004080;
+  color: #ffffff;
+  padding: 8px;
+  text-align: left;
+}
+
+.view-stat .info-table td, .view-stat .scores-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.view-stat .scores-table {
+  margin-top: 20px;
+  width: 250px;
+}
+
+.scores-table th, .scores-table td {
+  width: 50%; /* Adjust this value to change the column width */
+}
+
+.view-stat .scores-table th {
+  background-color: #004080;
+  color: #ffffff;
+  padding: 8px;
+  text-align: left;
+}
+
+.scores-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left; /* Align text to the left */
+}
+
+.graph-container {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.back-link {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  color: #ffffff;
+  background-color: #004080;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.back-link:hover {
+  background-color: #002040;
+}
+
+/* CSS for the graph container */
+.graph-container {
+  margin-bottom: 80px; /* Adjust the bottom margin as needed */
+  margin-left: 500px; /* Align the graph container to the center horizontally */
+  margin-right: auto;
+  width: 80%; /* Adjust the width of the graph container as needed */
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------- */
+/*                                    CSS for graphs canvas                                                                */
+/* ----------------------------------------------------------------------------------------------------------------------- */
+
+.chart-container {
+  margin-top: 30px;
+  width: 70%;
+  margin-left: 350px;
+  padding: 20px;
+}
+
+canvas {
+  background: #fff;
+  border: 3px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

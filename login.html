@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-box">
+            <h2>Welcome to PSSCMUSM Management System</h2>
+            <h2><br>Login</h2>
+            <form id="loginForm" action="login.php" method="post">
+                <div class="textbox">
+                    <input type="text" placeholder="Username" id="username" name="username" required>
+                </div>
+                <div class="textbox">
+                    <input type="password" placeholder="Password" id="password" name="password" required>
+                </div>
+                <input type="submit" class="btn" value="Log In">
+                <input type="submit" class="btn" value="Register">
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var form = this;
+            var formData = new FormData(form);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        window.location.href = 'index.html';
+                    } else {
+                        console.log('Login failed');
+                    }
+                }
+            };
+            xhr.open(form.method, form.action, true);
+            xhr.send(formData);
+        });
+    </script>
+</body>
+</html>

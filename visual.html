@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSSCMUSM Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body id="anr">
+    <!--Header with title and PSSCMUSM logo-->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <h1>PSSCMUSM Management System</h1>
+    </header>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="anr.html">Attendance & Records</a></li>
+                <li><a href="sdm.html">Student Data Management</a></li>
+                <li><a href="visual.html" class="active" >Data Visualization</a></li>
+            </ul>
+            <button class="logout-btn">Logout</button>
+        </nav>
+    </div>
+
+    <!--Navigation header inside body-->
+    <div class="navigation-text">
+        Data Visualization
+    </div>
+
+    <main>
+        <a href="visual2.html" class="box attendance">
+            <h2>Overall Data</h2>
+            <img src="images/overall.png" alt="Overall Icon">
+            <p><br>View overall data <br>of past class attendance</p>
+        </a>
+        <a href="individual.php" class="box records"> 
+            <h2>Individual Data</h2>
+            <img src="images/individual.png" alt="Individual Icon">
+            <p><br>View student attendance <br>records & test results</p>
+        </a>
+    </main>
+
+    <!--Referring to external JavaScript file-->
+    <script src="script.js" defer></script>
+</body>
+</html>
