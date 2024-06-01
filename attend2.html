@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSSCMUSM Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Disable back button functionality
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <h1>PSSCMUSM Management System</h1>
+    </header>
+
+    <div class="navigation-text">
+        <br><br><br><br><br>Attendance & Records > Set Up Class > Recording Attendance<br><br><br>
+        Please Scan Your PSSCMUSM Member Card
+    </div>
+
+    <!-- Student details section -->
+    <div class="student-details">
+        <table class="student-details-table">
+            <tr>
+                <td rowspan="8" class="student-picture">
+                    <img id="student-picture" src="" alt="Student Picture">
+                </td>
+                <td><strong>Name:</strong></td>
+                <td id="student-name"></td>
+            </tr>
+            <tr>
+                <td><strong>Matric ID:</strong></td>
+                <td id="student-matric-id"></td>
+            </tr>
+            <tr>
+                <td><strong>Gender:</strong></td>
+                <td id="student-gender"></td>
+            </tr>
+            <tr>
+                <td><strong>School:</strong></td>
+                <td id="student-school"></td>
+            </tr>
+            <!-- Add more rows for additional student details if needed -->
+            <tr>
+                <td><strong>Timestamp:</strong></td>
+                <td id="attendance-timestamp"></td>
+            </tr>
+            <tr>
+                <td><strong>Status:</strong></td>
+                <td id="attendance-status"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- "End Session" button -->
+    <button class="end-session-btn">End Session</button>
+
+    <!-- Referring to external JavaScript file -->
+    <script src="script.js" defer></script>
+
+    <script>
+        $(document).ready(function() {
+            // Fetch student details from the PHP script
+            function fetchStudentDetails() {
+                $.ajax({
+                    url: 'mqtt_subscriber.php',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log('AJAX response:', response);
+
+                        if (response.error) {
+                            alert(response.error);
+                        } else {
+                            $('#student-name').text(response.full_name);
+                            $('#student-matric-id').text(response.matric_ID);
+                            $('#student-gender').text(response.gender);
+                            $('#student-school').text(response.school);
+                            $('#attendance-timestamp').text(response.timestamp);
+                            $('#attendance-status').text(response.status);
+
+                            // Update the student picture
+                            var imageSrc = 'images/default_picture.png'; // Default image source
+                            if (response.image && response.image !== '') {
+                                imageSrc = 'images/' + response.image; // Use the image from the database
+                            }
+                            $('#student-picture').attr('src', imageSrc);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error fetching student data:', textStatus, errorThrown);
+                    }
+                });
+            }
+
+            // Call the function to fetch student details periodically
+            setInterval(fetchStudentDetails, 1000);
+
+            
+        });
+    </script>
+</body>
+</html>

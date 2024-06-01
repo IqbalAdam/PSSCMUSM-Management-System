@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attend</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--Referring to external JavaScript file-->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!--Header with title and PSSCMUSM logo-->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <h1>PSSCMUSM Management System</h1>
+    </header>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="anr.html" class="active">Attendance & Records</a></li>
+                <li><a href="sdm.html">Student Data Management</a></li>
+                <li><a href="visual.html">Data Visualization</a></li>
+            </ul>
+            <button class="logout-btn">Logout</button>
+        </nav>
+    </div>
+
+    <!-- Navigation text -->
+    <div class="navigation-text">
+        Attendance & Records > Set Up Class
+    </div>
+
+    <main>
+        <form id="dateForm" action="store_date.php" method="post">
+            <div class="class-setup-container">
+                <div class="choose-date">
+                    <label for="class-date">Choose Class Date</label>
+                    <input type="text" id="class-date" name="class-date">
+                </div>
+    
+                <!-- Start Session Button -->
+                <div class="start-session-btn">
+                    <button type="submit" class="start-session" disabled>Start Session</button>
+                </div>
+            </div>
+        </form>
+    
+        <script>
+            $(document).ready(function() {
+                // Datepicker initialization
+                $("#class-date").datepicker({
+                    dateFormat: 'yy-mm-dd', // Set the date format to YYYY-MM-DD
+                    onSelect: function(dateText) {
+                        // Enable the start session button when a date is selected
+                        $(".start-session").prop("disabled", false);
+                    }
+                });
+    
+                // Button click event handler for "Start Session" button
+                $(".start-session").click(function(event) {
+                    var classDate = $("#class-date").val();
+                    if (!classDate) {
+                        event.preventDefault(); // Prevent the default form submission
+                        // Show error notification if date is not selected
+                        alert("Must select a date first before 'Start Session'");
+                    } else {
+                        // Submit the form
+                        $("#dateForm").submit();
+                    }
+                });
+            });
+        </script>
+    </main>
+</body>
+</html>
