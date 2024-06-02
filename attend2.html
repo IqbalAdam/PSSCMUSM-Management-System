@@ -6,12 +6,72 @@
     <title>PSSCMUSM Management System</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.3/mqttws31.min.js"></script>
     <script>
         // Disable back button functionality
         history.pushState(null, null, location.href);
         window.onpopstate = function () {
             history.go(1);
         };
+
+        $(document).ready(function() {
+            const mqttBrokerUrl = 'ws://broker.hivemq.com:8000/mqtt';
+            const topic = 'attendance/rfid';
+
+            function fetchStudentDetails(id) {
+                $.ajax({
+                    url: `http://localhost/iqbal_FYP/get_student_details.php?id=${id}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log('AJAX response:', response);
+
+                        if (response.error) {
+                            alert(response.error);
+                        } else {
+                            $('#student-name').text(response.full_name);
+                            $('#student-matric-id').text(response.matric_ID);
+                            $('#student-gender').text(response.gender);
+                            $('#student-school').text(response.school);
+                            $('#attendance-timestamp').text(new Date().toLocaleString());
+                            $('#attendance-status').text('Present');
+
+                            // Update the student picture
+                            var imageSrc = 'images/default_picture.png'; // Default image source
+                            if (response.image && response.image !== '') {
+                                imageSrc = `images/${response.image}`; // Use the image from the database
+                            }
+                            $('#student-picture').attr('src', imageSrc);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error fetching student data:', textStatus, errorThrown);
+                    }
+                });
+            }
+
+            function onMessageArrived(message) {
+                const id = parseInt(message.payloadString, 16);
+                fetchStudentDetails(id);
+            }
+
+            function setupMqttClient() {
+                const client = new Paho.MQTT.Client(mqttBrokerUrl, 'clientId-' + Math.random().toString(16).substr(2, 8));
+                client.onMessageArrived = onMessageArrived;
+
+                client.connect({
+                    onSuccess: () => {
+                        client.subscribe(topic);
+                        console.log(`Subscribed to topic: ${topic}`);
+                    },
+                    onFailure: (error) => {
+                        console.error('MQTT connection failed:', error);
+                    }
+                });
+            }
+
+            setupMqttClient();
+        });
     </script>
 </head>
 <body>
@@ -32,7 +92,7 @@
         <table class="student-details-table">
             <tr>
                 <td rowspan="8" class="student-picture">
-                    <img id="student-picture" src="" alt="Student Picture">
+                    <img id="student-picture" src="images/default_picture.png" alt="Student Picture">
                 </td>
                 <td><strong>Name:</strong></td>
                 <td id="student-name"></td>
@@ -66,47 +126,5 @@
 
     <!-- Referring to external JavaScript file -->
     <script src="script.js" defer></script>
-
-    <script>
-        $(document).ready(function() {
-            // Fetch student details from the PHP script
-            function fetchStudentDetails() {
-                $.ajax({
-                    url: 'mqtt_subscriber.php',
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function(response) {
-                        console.log('AJAX response:', response);
-
-                        if (response.error) {
-                            alert(response.error);
-                        } else {
-                            $('#student-name').text(response.full_name);
-                            $('#student-matric-id').text(response.matric_ID);
-                            $('#student-gender').text(response.gender);
-                            $('#student-school').text(response.school);
-                            $('#attendance-timestamp').text(response.timestamp);
-                            $('#attendance-status').text(response.status);
-
-                            // Update the student picture
-                            var imageSrc = 'images/default_picture.png'; // Default image source
-                            if (response.image && response.image !== '') {
-                                imageSrc = 'images/' + response.image; // Use the image from the database
-                            }
-                            $('#student-picture').attr('src', imageSrc);
-                        }
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.error('Error fetching student data:', textStatus, errorThrown);
-                    }
-                });
-            }
-
-            // Call the function to fetch student details periodically
-            setInterval(fetchStudentDetails, 1000);
-
-            
-        });
-    </script>
 </body>
 </html>

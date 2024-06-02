@@ -1,5 +1,8 @@
 <?php
-include 'databse.php';
+$servername = "localhost";
+$username = "root"; // Adjust if necessary
+$password = ""; // Adjust if necessary
+$dbname = "pms";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
