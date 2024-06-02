@@ -77,7 +77,7 @@
 
         /* Custom CSS for search box */
         .search-container {
-            margin-top: -20px;
+            margin-top: -40px;
             margin-left: 261px;
         }
 
@@ -99,8 +99,7 @@
             font-size: 16px;
             margin-left: 2px;
         }
-
-        
+                
     </style>
 </head>
 <body>
@@ -125,7 +124,8 @@
 
     <!--Navigation header inside body-->
     <div class="navigation-text">
-        Student Data Management > Student List
+        Student Data Management > Student List<br><br>
+        Current student enrolled in The Art of SIlat Cekak Course
     </div>
 
     <!-- Search box -->

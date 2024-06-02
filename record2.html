@@ -18,7 +18,7 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="anr.html" class="active" >Attendance & Records</a></li>
+                <li><a href="anr.html" class="active">Attendance & Records</a></li>
                 <li><a href="sdm.html">Student Data Management</a></li>
                 <li><a href="visual.html">Data Visualization</a></li>
             </ul>
@@ -65,22 +65,74 @@
                     console.log(data); // Log the data to the console
                     const tbody = document.getElementById('attendanceTableBody');
                     tbody.innerHTML = '';
-                    data.forEach((student, index) => {
+                    
+                    let index = 1;
+                    
+                    data.present.forEach(student => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
-                            <td>${index + 1}</td>
+                            <td>${index}</td>
                             <td>${student.full_name}</td>
                             <td>${student.matric_ID}</td>
                             <td>${student.gender.toUpperCase()}</td>
-                            <td>PRESENT</td>
+                            <td class="status status-present" data-student-id="${student.id}" data-status="PRESENT">PRESENT</td>
                         `;
                         tbody.appendChild(row);
+                        index++;
+                    });
+                    
+                    data.absent.forEach(student => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${index}</td>
+                            <td>${student.full_name}</td>
+                            <td>${student.matric_ID}</td>
+                            <td>${student.gender.toUpperCase()}</td>
+                            <td class="status status-absent" data-student-id="${student.id}" data-status="ABSENT">ABSENT</td>
+                        `;
+                        tbody.appendChild(row);
+                        index++;
+                    });
+
+                    // Add click event listener to toggle status
+                    document.querySelectorAll('.status').forEach(cell => {
+                        cell.addEventListener('click', function() {
+                            const studentId = this.dataset.studentId;
+                            const currentStatus = this.dataset.status;
+                            const newStatus = currentStatus === 'PRESENT' ? 'ABSENT' : 'PRESENT';
+                            updateStatus(class_id, studentId, newStatus, this);
+                        });
                     });
                 })
                 .catch(error => console.error('Error fetching data:', error));
         });
+
+        function updateStatus(classId, studentId, status, cell) {
+            fetch('update_status.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ class_id: classId, student_id: studentId, status: status }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    cell.textContent = status;
+                    cell.dataset.status = status;
+                    if (status === 'PRESENT') {
+                        cell.classList.remove('status-absent');
+                        cell.classList.add('status-present');
+                    } else {
+                        cell.classList.remove('status-present');
+                        cell.classList.add('status-absent');
+                    }
+                } else {
+                    alert('Error updating status: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error updating status:', error));
+        }
     </script>
-    
-    
 </body>
 </html>

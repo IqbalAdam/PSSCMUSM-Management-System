@@ -1,7 +1,10 @@
 <?php
 // This code is used to register student in manage2.html
 // Database connection settings
-include 'databse.php';
+$servername = "localhost";
+$username = "root"; 
+$password = ""; 
+$dbname = "pms";  
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

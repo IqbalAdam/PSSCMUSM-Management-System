@@ -6,6 +6,7 @@
     <title>PSSCMUSM Management System</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <!--Header with title and PSSCMUSM logo-->
     <header>
@@ -18,7 +19,7 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="anr.html" class="active" >Attendance & Records</a></li>
+                <li><a href="anr.html" class="active">Attendance & Records</a></li>
                 <li><a href="sdm.html">Student Data Management</a></li>
                 <li><a href="visual.html">Data Visualization</a></li>
             </ul>
@@ -40,10 +41,12 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Class Date <img id="dateFilterBtn" src="images/dropdown.png" alt="Filter" class="filter-btn" onclick="toggleDateFilter()"></th>
-                        <th>Attendance</th>
-                        <th>Overall</th>
-                        <th>Percentage <img id="percentageFilterBtn" src="images/dropdown.png" alt="Filter" class="filter-btn" onclick="togglePercentageFilter()"></th>
+                        <th>Class Date</th>
+                        <th>Day</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Total Students</th>
+                        <th>Attend. Percentage</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -60,24 +63,40 @@
             fetch('fetch_records.php')
                 .then(response => response.json())
                 .then(data => {
+                    // Sort data by date in descending order
+                    data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
                     const tbody = document.getElementById('recordTableBody');
                     tbody.innerHTML = '';
                     data.forEach((record, index) => {
+                        const date = new Date(record.date);
+                        const options = { weekday: 'long' };
+                        const day = date.toLocaleDateString('en-US', options).toUpperCase();
+
+                        // Format date to DD-MM-YYYY
+                        const dayFormatted = String(date.getDate()).padStart(2, '0');
+                        const monthFormatted = String(date.getMonth() + 1).padStart(2, '0');
+                        const yearFormatted = date.getFullYear();
+                        const formattedDate = `${dayFormatted}-${monthFormatted}-${yearFormatted}`;
+
+                        const absent = record.overall - record.attend;
+
                         const row = document.createElement('tr');
                         row.innerHTML = `
                             <td>${index + 1}</td>
-                            <td>${record.date}</td>
+                            <td>${formattedDate}</td>
+                            <td>${day}</td>
                             <td>${record.attend}</td>
+                            <td>${absent}</td>
                             <td>${record.overall}</td>
                             <td>${record.percentage.toFixed(2)}%</td>
-                            <td><button class="view-rcrd" onclick="window.location.href='record2.html?class_id=${record.class_id}'">View</button></td>
+                            <td><button class="view-rcrd" onclick="window.location.href='record2.html?class_id=${record.class_id}'">View Attendance</button></td>
                         `;
                         tbody.appendChild(row);
                     });
                 })
                 .catch(error => console.error('Error fetching data:', error));
         });
-        
     </script>
 </body>
 </html>

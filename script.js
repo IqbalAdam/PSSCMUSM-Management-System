@@ -107,6 +107,30 @@ function registerStudent() {
     window.location.href = "manage2.html";
 }
 
+document.querySelectorAll('.delete-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const deleteId = this.getAttribute('data-id');
+        if (confirm("Are you sure you want to delete this student?")) {
+            // Send AJAX request to delete_student.php
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Update table or show a message
+                        // For simplicity, you can reload the page
+                        location.reload();
+                    } else {
+                        console.error('Error:', xhr.statusText);
+                    }
+                }
+            };
+            xhr.open('POST', 'delete_student.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('delete_id=' + deleteId);
+        }
+    });
+});
+
 //---------------------------------------------------------------------------------------------------------------------------
 //                                                 Script in manage2.html
 //---------------------------------------------------------------------------------------------------------------------------
@@ -135,43 +159,11 @@ function previewImage(event) {
         event.preventDefault();
         });
     });
-
-
-
-
-
-
-
-
-
-    document.querySelectorAll('.delete-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const deleteId = this.getAttribute('data-id');
-            if (confirm("Are you sure you want to delete this student?")) {
-                // Send AJAX request to delete_student.php
-                const xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            // Update table or show a message
-                            // For simplicity, you can reload the page
-                            location.reload();
-                        } else {
-                            console.error('Error:', xhr.statusText);
-                        }
-                    }
-                };
-                xhr.open('POST', 'delete_student.php', true);
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.send('delete_id=' + deleteId);
-            }
-        });
-    });
     
-
 //---------------------------------------------------------------------------------------------------------------------------
 //                                                 Script in visual.html
 //---------------------------------------------------------------------------------------------------------------------------
+
     document.addEventListener("DOMContentLoaded", function() {
         const yearSelect = document.getElementById('year-select');
         const currentYear = new Date().getFullYear();
@@ -191,7 +183,6 @@ function previewImage(event) {
             console.log(`Displaying data for ${month} ${year}`);
         });
     });
-    
     
 //---------------------------------------------------------------------------------------------------------------------------
 //                                                 Script in view_stat.php
