@@ -22,41 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
 //                                                 Script in record.html
 //---------------------------------------------------------------------------------------------------------------------------
 
-let dateFilterAscending = true;
-let percentageFilterAscending = true;
-
-function toggleDateFilter() {
-    const rows = [...document.querySelectorAll("#recordTable tbody tr")];
-    const sortedRows = rows.sort((a, b) => {
-        const dateA = new Date(a.children[2].textContent.split('/').reverse().join('/'));
-        const dateB = new Date(b.children[2].textContent.split('/').reverse().join('/'));
-        if (dateFilterAscending) {
-            return dateA - dateB;
-        } else {
-            return dateB - dateA;
-        }
-    });
-    renderSortedRows(sortedRows);
-    dateFilterAscending = !dateFilterAscending;
-    rotateIcon(this);
-}
-
-function togglePercentageFilter() {
-    const rows = [...document.querySelectorAll("#recordTable tbody tr")];
-    const sortedRows = rows.sort((a, b) => {
-        const percentageA = parseFloat(a.children[4].textContent);
-        const percentageB = parseFloat(b.children[4].textContent);
-        if (percentageFilterAscending) {
-            return percentageA - percentageB;
-        } else {
-            return percentageB - percentageA;
-        }
-    });
-    renderSortedRows(sortedRows);
-    percentageFilterAscending = !percentageFilterAscending;
-    rotateIcon(this);
-}
-
 function renderSortedRows(sortedRows) {
     const tableBody = document.getElementById("recordTableBody");
     tableBody.innerHTML = "";
@@ -222,10 +187,107 @@ function previewImage(event) {
             body: `matric_id=${matricId}&status=${status}`
         });
     }
-    
 
     // Add event listener to the logout button
     document.querySelector('.logout-btn').addEventListener('click', function() {
         // Redirect to login.html
-        window.location.href = 'login.html';
+        window.location.href = 'login.php';
     });
+
+
+
+
+    
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const class_id = urlParams.get('class_id');
+    
+        fetch(`view_record.php?class_id=${class_id}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Log the data to the console
+                const tbody = document.getElementById('attendanceTableBody');
+                tbody.innerHTML = '';
+    
+                let index = 1;
+    
+                data.present.forEach(student => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index}</td>
+                        <td>${student.full_name}</td>
+                        <td>${student.matric_ID}</td>
+                        <td>${student.gender.toUpperCase()}</td>
+                        <td class="status" data-student-id="${student.id}" data-status="PRESENT">
+                            <span class="status-text">PRESENT</span>
+                            <select class="status-dropdown">
+                                <option value="PRESENT">Mark as PRESENT</option>
+                                <option value="ABSENT">Mark as ABSENT</option>
+                            </select>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                    index++;
+                });
+    
+                data.absent.forEach(student => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index}</td>
+                        <td>${student.full_name}</td>
+                        <td>${student.matric_ID}</td>
+                        <td>${student.gender.toUpperCase()}</td>
+                        <td class="status" data-student-id="${student.id}" data-status="ABSENT">
+                            <span class="status-text">ABSENT</span>
+                            <select class="status-dropdown">
+                                <option value="PRESENT">Mark as PRESENT</option>
+                                <option value="ABSENT">Mark as ABSENT</option>
+                            </select>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                    index++;
+                });
+    
+                // Add event listener to handle status change
+                document.querySelectorAll('.status-dropdown').forEach(dropdown => {
+                    dropdown.addEventListener('change', function() {
+                        const cell = this.closest('.status');
+                        const studentId = cell.dataset.studentId;
+                        const newStatus = this.value;
+                        updateStatus(class_id, studentId, newStatus, cell);
+                    });
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
+    
+    function updateStatus(classId, studentId, status, cell) {
+        fetch('update_status.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ class_id: classId, student_id: studentId, status: status }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                cell.querySelector('.status-text').textContent = status;
+                cell.dataset.status = status;
+                if (status === 'PRESENT') {
+                    cell.classList.remove('status-absent');
+                    cell.classList.add('status-present');
+                } else {
+                    cell.classList.remove('status-present');
+                    cell.classList.add('status-absent');
+                }
+            } else {
+                alert('Error updating status: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error updating status:', error));
+    }
+    

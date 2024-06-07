@@ -977,3 +977,34 @@ canvas {
   border: 3px solid #ddd;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+
+
+
+
+
+/* Hide dropdown by default */
+.status-dropdown {
+    display: none;
+}
+
+.status:hover .status-dropdown {
+    display: inline-block;
+}
+
+.status:hover .status-text {
+    display: none;
+}
+
+/* Optional: Add additional styling for better appearance */
+.status {
+    position: relative;
+}
+
+.status-dropdown {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+}

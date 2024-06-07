@@ -1,21 +1,35 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include 'database.php';
+header('Content-Type: application/json');
 
-    $matric_id = $_POST['matric_id'];
-    $status = $_POST['status'];
+$input = json_decode(file_get_contents('php://input'), true);
+$class_id = $input['class_id'];
+$student_id = $input['student_id'];
+$status = $input['status'];
 
-    $sql = "UPDATE student SET status = ? WHERE matric_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ss', $status, $matric_id);
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "pms";
 
-    if ($stmt->execute()) {
-        echo "Status updated successfully";
-    } else {
-        echo "Error updating status: " . $conn->error;
-    }
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    $stmt->close();
-    $conn->close();
+// Check connection
+if ($conn->connect_error) {
+    die(json_encode(['status' => 'error', 'message' => 'Connection failed: ' . $conn->connect_error]));
 }
+
+if ($status === 'PRESENT') {
+    $sql = "INSERT INTO attendance (class_id, student_id) VALUES ('$class_id', '$student_id')";
+} else {
+    $sql = "DELETE FROM attendance WHERE class_id = '$class_id' AND student_id = '$student_id'";
+}
+
+if ($conn->query($sql) === TRUE) {
+    echo json_encode(['status' => 'success']);
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Error: ' . $conn->error]);
+}
+
+$conn->close();
 ?>
