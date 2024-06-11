@@ -1,60 +1,43 @@
 <?php
-require 'path/to/phpMQTT.php'; // Ensure the path to phpMQTT.php is correct
+require('phpMQTT.php');
 
-// Database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "pms";
+$server = 'broker.hivemq.com';
+$port = 1883; // Use TCP port for MQTT
+$username = ''; // Not needed for HiveMQ public broker
+$password = ''; // Not needed for HiveMQ public broker
+$client_id = 'phpMQTT-subscriber-' . uniqid(); // Unique client ID
 
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$mysqli = new mysqli("localhost", "root", "", "pms");
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
 }
 
-// MQTT server details
-$server = "127.0.0.1"; // MQTT server IP
-$port = 1883;
-$topic = "rfid/id";
+$mqtt = new Bluerhinos\phpMQTT($server, $port, $client_id);
 
-// Create a new MQTT client
-$mqtt = new phpMQTT($server, $port, "PHPClientSubscriber");
-
-if (!$mqtt->connect(true, NULL, "username", "password")) { // Add MQTT username/password if required
+if(!$mqtt->connect(true, NULL, $username, $password)) {
     exit(1);
 }
 
-// Subscribe to the MQTT topic
-$mqtt->subscribe([$topic => ["qos" => 0, "function" => "procmsg"]]);
+$topics['attendance/rfid'] = array('qos' => 0, 'function' => 'procMsg');
+$mqtt->subscribe($topics, 0);
 
-function procmsg($topic, $msg) {
-    global $conn;
-    
-    $uid = $msg;
-    // Fetch student details from the database
-    $sql = "SELECT full_name, matric_ID, gender, school, image FROM student WHERE id = '$uid'";
-    $result = $conn->query($sql);
+function procMsg($topic, $msg){
+    global $mysqli;
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $studentData = [
-            'full_name' => $row['full_name'],
-            'matric_ID' => $row['matric_ID'],
-            'gender' => $row['gender'],
-            'school' => $row['school'],
-            'image' => $row['image']
-        ];
-        echo json_encode($studentData);
-    } else {
-        echo json_encode(['error' => 'Student not found']);
-    }
+    // Convert the hexadecimal message to decimal
+    $id = hexdec($msg);
+
+    // Insert the student ID into the attendance table
+    $stmt = $mysqli->prepare("INSERT INTO attendance (student_id) VALUES (?)");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
 }
 
-while ($mqtt->proc()) {}
+while($mqtt->proc()){
+}
 
-$conn->close();
 $mqtt->close();
+$mysqli->close();
 ?>

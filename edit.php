@@ -112,6 +112,7 @@ $conn->close();
             </div>
         </div>
         <button type="submit">Update</button>
+        <button href="result.php" type="submit">Cancel</button>
     </form>
 </body>
 </html>

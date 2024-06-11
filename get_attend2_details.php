@@ -1,32 +1,24 @@
 <?php
-header('Content-Type: application/json');
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = intval($_POST['id']);
 
-include 'database';
+    // Connect to the database
+    $mysqli = new mysqli("localhost", "root", "", "pms");
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+    if ($mysqli->connect_error) {
+        die("Connection failed: " . $mysqli->connect_error);
+    }
 
-// Check connection
-if ($conn->connect_error) {
-    die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
+    // Fetch student details based on the ID
+    $stmt = $mysqli->prepare("SELECT full_name, matric_id, gender, school, image FROM student WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $student = $result->fetch_assoc();
+
+    echo json_encode($student);
+
+    $stmt->close();
+    $mysqli->close();
 }
-
-if (!isset($_GET['id'])) {
-    die(json_encode(["error" => "ID not provided"]));
-}
-
-$id = intval($_GET['id']);
-$sql = "SELECT full_name, matric_ID, gender, school, image FROM student WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows > 0) {
-    echo json_encode($result->fetch_assoc());
-} else {
-    echo json_encode(["error" => "No student found with ID $id"]);
-}
-
-$conn->close();
 ?>

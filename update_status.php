@@ -6,10 +6,7 @@ $class_id = $input['class_id'];
 $student_id = $input['student_id'];
 $status = $input['status'];
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "pms";
+include 'database.php';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

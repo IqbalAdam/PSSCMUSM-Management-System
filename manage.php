@@ -19,14 +19,14 @@
             margin-right: 150px;
             margin-top: -40px;
             margin-bottom: 50px;
-            border: 1px solid #ddd; /* Add border to the table */
+            border: 2px solid #000000; /* Add border to the table */
         }
 
         th, td {
             padding: 12px 15px;
             text-align: center;
-            border-bottom: 1px solid #ddd;
-            border-right: 1px solid #ddd; /* Add right border to cells */
+            border-bottom: 1px solid #000000;
+            border-right: 1px solid #000000; /* Add right border to cells */
         }
 
         th:first-child,

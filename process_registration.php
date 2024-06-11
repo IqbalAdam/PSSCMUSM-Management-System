@@ -1,10 +1,7 @@
 <?php
 // This code is used to register student in manage2.html
 // Database connection settings
-$servername = "localhost";
-$username = "root"; 
-$password = ""; 
-$dbname = "pms";  
+include 'database.php';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -39,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Execute SQL statement
             if ($stmt->execute()) {
-                echo "<br><br><br><br><br><br><br><br><br><br><br><br><br>Registration Successful!";
+                echo "Registration Successful!";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }

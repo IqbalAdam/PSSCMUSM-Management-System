@@ -135,7 +135,6 @@ text-decoration: none;
 /*                               CSS in anr.html                                                                           */
 /* ----------------------------------------------------------------------------------------------------------------------- */
 
-/* CSS for the main content area */
 main {
 display: flex;
 justify-content: center;
@@ -162,7 +161,6 @@ text-decoration: none;
 background-color: #002040;
 }
 
-/* CSS for the boxes */
 .box {
 width: 300px;
 height: 300px;
@@ -200,7 +198,6 @@ color: #333;
 font-family: 'Roboto', sans-serif; 
 }
 
-/* Adjust space between boxes */
 .records {
 margin-left: 30px; 
 }
@@ -335,28 +332,6 @@ background-color: #002040;
   background-color: #f2f2f2;
 }
 
-/*Sort button beside percentage*/
-#sortBtn {
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 16px;
-  vertical-align: middle;
-  padding: 0; 
-  margin: 0; 
-}
-
-/* Rotate arrow for ascending order */
-#sortBtn.asc {
-  transform: rotate(0deg); 
-}
-
-/* Rotate arrow for descending order */
-#sortBtn.desc {
-  transform: rotate(180deg); 
-}
-
-/* Alternating row colors */
 .table-container tr:nth-child(even) {
   background-color: #f2f2f2;
 }
@@ -364,20 +339,13 @@ background-color: #002040;
 /* Adjustments for the table in record.html */
 #recordTable th:nth-child(2),
 #recordTable td:nth-child(2) {
-  width: 380px; /* Adjust the width as needed */
+  width: 380px; 
 }
 
-/* Add rotating animation for filter button icons */
-.rotate180 {
-  transform: rotate(180deg);
-  transition: transform 0.3s ease;
-}
-
-/* Resize the dropdown.png image */
 img#dateFilterBtn,
 img#percentageFilterBtn {
-    width: 16px; /* Adjust the width as needed */
-    height: 16px; /* Adjust the height as needed */
+    width: 16px;
+    height: 16px; 
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
@@ -388,13 +356,13 @@ img#percentageFilterBtn {
 .status-present {
   color: #39FF14;
   font-weight: bold;
-  cursor: pointer; /* Make the status clickable */
+  cursor: pointer;
 }
 
 .status-absent {
   color: red;
   font-weight: bold;
-  cursor: pointer; /* Make the status clickable */
+  cursor: pointer; 
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
@@ -473,12 +441,12 @@ img#percentageFilterBtn {
 }
 
 .search-container button.clear-button {
-  background-color: #ec0202; /* Change to your desired color */
-  color: #fff; /* Text color */
+  background-color: #ec0202; 
+  color: #fff; 
 }
 
 .search-container button.clear-button:hover {
-  background-color: #ec0202; /* Change to your desired color on hover */
+  background-color: #ec0202; 
 }
 
 .search-container button:last-child {
@@ -493,18 +461,17 @@ img#percentageFilterBtn {
 /* Adjustments for the table box */
 .table-box {
   border-radius: 8px;
-  overflow: hidden; /* Hide overflow */
-  width: calc(100% - 260px); /* Adjust the width to fit within container */
+  overflow: hidden; 
+  width: calc(100% - 260px);
   max-height: 520px; 
   margin: 0 auto; 
   margin-top: 40px;
   margin-left: 100px;
-  padding: 0 10px; /* Add padding to ensure content doesn't touch edges */
-  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  padding: 0 10px; 
+  box-sizing: border-box; 
   overflow-y: scroll;
 }
 
-/* Adjustments for the table container */
 .table-container th,
 .table-container td {
   border: 1px solid #ddd;
@@ -652,11 +619,10 @@ img#percentageFilterBtn {
 /*                               CSS in individual.html                                                                    */
 /* ----------------------------------------------------------------------------------------------------------------------- */
 
-/* Adjustments for the table container */
 .table-container th:nth-child(2),
 .table-container td:nth-child(2) {
-  width: 30%; /* Adjust the width as needed */
-  text-align: left; /* Align text to the left */
+  width: 30%; 
+  text-align: left; 
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
@@ -708,7 +674,7 @@ img#percentageFilterBtn {
   background: #007bff;
   color: #fff;
   cursor: pointer;
-  margin-bottom: 10px; /* Added margin to create a gap between buttons */
+  margin-bottom: 10px;
 }
 
 .btn:hover {
@@ -728,29 +694,36 @@ img#percentageFilterBtn {
   max-width: 600px;
   margin: 50px auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #f9f9f9; 
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .edit-page .student-image {
   text-align: center;
-  margin-bottom: -100px;
+  margin-bottom: -20px;
 }
 
 .edit-page .student-image img {
   max-width: 200px;
   max-height: 200px;
+  margin-bottom: -60px;
 }
 
 .edit-page .student-details {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 20px;
+  margin-left: -10px;
+  margin-right: 10px;
 }
 
 .edit-page .student-details input {
   width: 100%;
+  padding: 8px;    
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
 }
 
 .edit-page .test-scores {
@@ -761,6 +734,10 @@ img#percentageFilterBtn {
 
 .edit-page .test-score input {
   width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
 }
 
 .edit-page button[type="submit"] {
@@ -771,6 +748,7 @@ img#percentageFilterBtn {
   background-color: #004080;
   color: #fff;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .edit-page button[type="submit"]:hover {
@@ -781,7 +759,6 @@ img#percentageFilterBtn {
 /*                                    CSS in overall.html                                                                  */
 /* ----------------------------------------------------------------------------------------------------------------------- */
 
-/* Styles for dropdowns and button in dropdown-container */
 .dropdown-container {
   margin-left: 880px;
   display: flex;
@@ -915,7 +892,7 @@ img#percentageFilterBtn {
 }
 
 .scores-table th, .scores-table td {
-  width: 50%; /* Adjust this value to change the column width */
+  width: 50%;
 }
 
 .view-stat .scores-table th {
@@ -928,7 +905,7 @@ img#percentageFilterBtn {
 .scores-table td {
   border: 1px solid #ccc;
   padding: 8px;
-  text-align: left; /* Align text to the left */
+  text-align: left; 
 }
 
 .graph-container {
@@ -955,10 +932,10 @@ img#percentageFilterBtn {
 
 /* CSS for the graph container */
 .graph-container {
-  margin-bottom: 80px; /* Adjust the bottom margin as needed */
-  margin-left: 500px; /* Align the graph container to the center horizontally */
+  margin-bottom: 80px; 
+  margin-left: 500px; 
   margin-right: auto;
-  width: 80%; /* Adjust the width of the graph container as needed */
+  width: 80%; 
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
@@ -996,7 +973,6 @@ canvas {
     display: none;
 }
 
-/* Optional: Add additional styling for better appearance */
 .status {
     position: relative;
 }

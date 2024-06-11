@@ -1,9 +1,6 @@
 <?php
 // This code is used to view students who present in the selected class (RECORDS SUB-MODULE)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "pms";
+include 'database.php';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

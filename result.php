@@ -19,20 +19,19 @@
             margin-right: 150px;
             margin-top: -40px;
             margin-bottom: 50px;
-            border: 1px solid #ddd; /* Add border to the table */
+            border: 2px solid #000000; 
         }
 
         th, td {
             padding: 12px 15px;
             text-align: center;
-            border-bottom: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
-            border-right: 1px solid #ddd; /* Add right border to cells */
+            border-bottom: 1px solid #000000;
+            border-right: 1px solid #000000; 
         }
 
         th:first-child,
         td:first-child {
-            border-left: 1px solid #ddd; /* Add left border to first cell in each row */
+            border-left: 1px solid #ddd; 
         }
 
         th {
