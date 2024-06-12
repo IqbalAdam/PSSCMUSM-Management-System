@@ -11,19 +11,19 @@
             $.ajax({
                 url: 'latest_message.txt',
                 success: function(data) {
-                    // Convert the hexadecimal message to decimal
-                    var id = parseInt(data, 16);
+                    console.log("Latest message (hexadecimal ID):", data);
 
-                    // Fetch student details based on the ID
+                    // Fetch student details based on the hexadecimal ID
                     $.ajax({
-                        url: 'get_attend2_details.php', // Updated filename
+                        url: 'get_attend2_details.php',
                         method: 'POST',
-                        data: { id: id },
+                        data: { id: data },
                         success: function(response) {
+                            console.log("Student details:", response);
                             var student = JSON.parse(response);
                             document.getElementById("student-name").innerText = student.full_name;
                             document.getElementById("student-matric-id").innerText = student.matric_id;
-                            document.getElementById("student-gender").innerText = student.gender.toUpperCase(); // Convert to uppercase
+                            document.getElementById("student-gender").innerText = student.gender.toUpperCase();
                             document.getElementById("student-school").innerText = student.school;
                             document.getElementById("student-picture").src = student.image;
                         },
@@ -58,7 +58,7 @@
             }
         });
     });
-    </script>
+    </script>    
 </head>
 <body>
     <header>

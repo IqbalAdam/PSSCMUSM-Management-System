@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSSCMUSM Management System</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .filter-container {
+            margin-left: 880px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            margin-bottom: -50px;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,6 +43,37 @@
         Choose class to view attendance in that class date
     </div>
 
+    <!-- Filter container with the same CSS styles as provided -->
+    <div class="filter-container">
+        <label for="month">Month:</label>
+        <select id="month">
+            <option value="">All</option>
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+        
+        <label for="year">Year:</label>
+        <select id="year">
+            <option value="">All</option>
+            <!-- Add more years as needed -->
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+        </select>
+        
+        <button onclick="filterRecords()">Filter</button>
+    </div>
+
     <!-- Table box container -->
     <div class="table-box">
         <!-- Table container -->
@@ -59,44 +100,97 @@
 
     <!--Referring to external JavaScript file-->
     <script>
+        let allData = [];
+
         document.addEventListener('DOMContentLoaded', function() {
             fetch('fetch_records.php')
                 .then(response => response.json())
                 .then(data => {
-                    // Sort data by date in descending order
-                    data.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-                    const tbody = document.getElementById('recordTableBody');
-                    tbody.innerHTML = '';
-                    data.forEach((record, index) => {
-                        const date = new Date(record.date);
-                        const options = { weekday: 'long' };
-                        const day = date.toLocaleDateString('en-US', options).toUpperCase();
-
-                        // Format date to DD-MM-YYYY
-                        const dayFormatted = String(date.getDate()).padStart(2, '0');
-                        const monthFormatted = String(date.getMonth() + 1).padStart(2, '0');
-                        const yearFormatted = date.getFullYear();
-                        const formattedDate = `${dayFormatted}-${monthFormatted}-${yearFormatted}`;
-
-                        const absent = record.overall - record.attend;
-
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${index + 1}</td>
-                            <td>${formattedDate}</td>
-                            <td>${day}</td>
-                            <td>${record.attend}</td>
-                            <td>${absent}</td>
-                            <td>${record.overall}</td>
-                            <td>${record.percentage.toFixed(2)}%</td>
-                            <td><button class="view-rcrd" onclick="window.location.href='record2.html?class_id=${record.class_id}'">View List</button></td>
-                        `;
-                        tbody.appendChild(row);
-                    });
+                    allData = data; // Store all data in a global variable
+                    populateTable(allData);
                 })
                 .catch(error => console.error('Error fetching data:', error));
         });
+
+        function populateTable(data) {
+            // Sort data by date in descending order
+            data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            const tbody = document.getElementById('recordTableBody');
+            tbody.innerHTML = '';
+            data.forEach((record, index) => {
+                const date = new Date(record.date);
+                const options = { weekday: 'long' };
+                const day = date.toLocaleDateString('en-US', options).toUpperCase();
+
+                // Format date to DD-MM-YYYY
+                const dayFormatted = String(date.getDate()).padStart(2, '0');
+                const monthFormatted = String(date.getMonth() + 1).padStart(2, '0');
+                const yearFormatted = date.getFullYear();
+                const formattedDate = `${dayFormatted}-${monthFormatted}-${yearFormatted}`;
+
+                const absent = record.overall - record.attend;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${formattedDate}</td>
+                    <td>${day}</td>
+                    <td>${record.attend}</td>
+                    <td>${absent}</td>
+                    <td>${record.overall}</td>
+                    <td>${record.percentage.toFixed(2)}%</td>
+                    <td>
+                        <button class="view-rcrd" onclick="window.location.href='record2.html?class_id=${record.class_id}'">View List</button>
+                        <button class="delete-rcrd" onclick="deleteRecord(${record.class_id}, this)">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function deleteRecord(classId, button) {
+            if (confirm('Are you sure you want to delete this record?')) {
+                fetch('delete_record.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ class_id: classId }),
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        location.reload(); // Refresh the page
+                    } else {
+                        alert('Failed to delete the record. Please try again.');
+                    }
+                })
+                .catch(error => console.error('Error deleting record:', error));
+            }
+        }
+
+        function filterRecords() {
+            const month = document.getElementById('month').value;
+            const year = document.getElementById('year').value;
+            const filteredData = allData.filter(record => {
+                const recordDate = new Date(record.date);
+                const recordMonth = String(recordDate.getMonth() + 1).padStart(2, '0');
+                const recordYear = recordDate.getFullYear().toString();
+
+                if (month && year) {
+                    return recordMonth === month && recordYear === year;
+                } else if (month) {
+                    return recordMonth === month;
+                } else if (year) {
+                    return recordYear === year;
+                } else {
+                    return true; // No filter applied
+                }
+            });
+            populateTable(filteredData);
+        }
     </script>
 </body>
 </html>
+

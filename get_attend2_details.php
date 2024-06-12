@@ -1,6 +1,7 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = intval($_POST['id']);
+if (isset($_POST['id'])) {
+    $hex_id = $_POST['id'];
+    $id = hexdec($hex_id); // Convert the hexadecimal ID to decimal
 
     // Connect to the database
     $mysqli = new mysqli("localhost", "root", "", "pms");
@@ -16,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $stmt->get_result();
     $student = $result->fetch_assoc();
 
+    // Return student details as JSON
     echo json_encode($student);
 
     $stmt->close();
