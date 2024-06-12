@@ -3,10 +3,10 @@
 require('phpMQTT\phpMQTT.php');
 
 $server = 'broker.hivemq.com';
-$port = 1883; // Use TCP port for MQTT
-$username = ''; // Not needed for HiveMQ public broker
-$password = ''; // Not needed for HiveMQ public broker
-$client_id = 'phpMQTT-subscriber-' . uniqid(); // Unique client ID
+$port = 1883; // TCP port for MQTT
+$username = '';
+$password = ''; 
+$client_id = 'phpMQTT-subscriber-' . uniqid();
 
 $mqtt = new Bluerhinos\phpMQTT($server, $port, $client_id);
 

@@ -114,5 +114,13 @@ $conn->close();
         <button type="submit">Update</button>
         <button href="result.php" type="submit">Cancel</button>
     </form>
+    
+    <script>
+        // Add event listener to the logout button
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            // Redirect to login.html
+            window.location.href = 'login.html';
+        });
+    </script>
 </body>
 </html>

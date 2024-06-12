@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Show confirmation dialog
         const confirmation = confirm("End Session will stop taking attendance for today's class. \nAre you sure want to stop taking attendance?");
     
-        // If user clicks OK (true), redirect to anr.html
+        // If user clicks OK, redirect to anr.html
         if (confirmation) {
             window.location.href = "anr.html";
         }
@@ -38,13 +38,105 @@ function rotateIcon(button) {
 document.getElementById("dateFilterBtn").addEventListener("click", toggleDateFilter);
 document.getElementById("percentageFilterBtn").addEventListener("click", togglePercentageFilter);
 
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const class_id = urlParams.get('class_id');
+
+    fetch(`view_record.php?class_id=${class_id}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // Log the data to the console
+            const tbody = document.getElementById('attendanceTableBody');
+            tbody.innerHTML = '';
+
+            let index = 1;
+
+            data.present.forEach(student => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index}</td>
+                    <td>${student.full_name}</td>
+                    <td>${student.matric_ID}</td>
+                    <td>${student.gender.toUpperCase()}</td>
+                    <td class="status" data-student-id="${student.id}" data-status="PRESENT">
+                        <span class="status-text">PRESENT</span>
+                        <select class="status-dropdown">
+                            <option value="PRESENT">Mark as PRESENT</option>
+                            <option value="ABSENT">Mark as ABSENT</option>
+                        </select>
+                    </td>
+                `;
+                tbody.appendChild(row);
+                index++;
+            });
+
+            data.absent.forEach(student => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index}</td>
+                    <td>${student.full_name}</td>
+                    <td>${student.matric_ID}</td>
+                    <td>${student.gender.toUpperCase()}</td>
+                    <td class="status" data-student-id="${student.id}" data-status="ABSENT">
+                        <span class="status-text">ABSENT</span>
+                        <select class="status-dropdown">
+                            <option value="PRESENT">Mark as PRESENT</option>
+                            <option value="ABSENT">Mark as ABSENT</option>
+                        </select>
+                    </td>
+                `;
+                tbody.appendChild(row);
+                index++;
+            });
+
+            // Add event listener to handle status change
+            document.querySelectorAll('.status-dropdown').forEach(dropdown => {
+                dropdown.addEventListener('change', function() {
+                    const cell = this.closest('.status');
+                    const studentId = cell.dataset.studentId;
+                    const newStatus = this.value;
+                    updateStatus(class_id, studentId, newStatus, cell);
+                });
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+
+function updateStatus(classId, studentId, status, cell) {
+    fetch('update_status.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ class_id: classId, student_id: studentId, status: status }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            cell.querySelector('.status-text').textContent = status;
+            cell.dataset.status = status;
+            if (status === 'PRESENT') {
+                cell.classList.remove('status-absent');
+                cell.classList.add('status-present');
+            } else {
+                cell.classList.remove('status-present');
+                cell.classList.add('status-absent');
+            }
+        } else {
+            alert('Error updating status: ' + data.message);
+        }
+    })
+    .catch(error => console.error('Error updating status:', error));
+}
+
 //---------------------------------------------------------------------------------------------------------------------------
 //                                                 Script in manage.html
 //---------------------------------------------------------------------------------------------------------------------------
 
 function clearSearch() {
-    document.getElementById("searchInput").value = ""; // Clear the search input value
-    searchTable(); // Optionally, you can call the searchTable() function to reset the search results
+    // Clear the search input value
+    document.getElementById("searchInput").value = ""; 
+    searchTable();
 }
 
 function searchTable() {
@@ -82,7 +174,6 @@ document.querySelectorAll('.delete-btn').forEach(button => {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
                         // Update table or show a message
-                        // For simplicity, you can reload the page
                         location.reload();
                     } else {
                         console.error('Error:', xhr.statusText);
@@ -100,7 +191,6 @@ document.querySelectorAll('.delete-btn').forEach(button => {
 //                                                 Script in manage2.html
 //---------------------------------------------------------------------------------------------------------------------------
 
-// Function to preview image before uploading
 function previewImage(event) {
     var reader = new FileReader();
     reader.onload = function() {
@@ -110,7 +200,7 @@ function previewImage(event) {
     reader.readAsDataURL(event.target.files[0]);
     }
 
-// Attach event listener to image input
+    // Attach event listener to image input
     document.getElementById('image').addEventListener('change', previewImage);
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -132,7 +222,7 @@ function previewImage(event) {
     document.addEventListener("DOMContentLoaded", function() {
         const yearSelect = document.getElementById('year-select');
         const currentYear = new Date().getFullYear();
-        const startYear = 2000; // Adjust as needed
+        const startYear = 2000;
     
         for (let year = startYear; year <= currentYear; year++) {
             const option = document.createElement('option');
@@ -187,107 +277,3 @@ function previewImage(event) {
             body: `matric_id=${matricId}&status=${status}`
         });
     }
-
-    // Add event listener to the logout button
-    document.querySelector('.logout-btn').addEventListener('click', function() {
-        // Redirect to login.html
-        window.location.href = 'login.php';
-    });
-
-
-
-
-    
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const class_id = urlParams.get('class_id');
-    
-        fetch(`view_record.php?class_id=${class_id}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // Log the data to the console
-                const tbody = document.getElementById('attendanceTableBody');
-                tbody.innerHTML = '';
-    
-                let index = 1;
-    
-                data.present.forEach(student => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${index}</td>
-                        <td>${student.full_name}</td>
-                        <td>${student.matric_ID}</td>
-                        <td>${student.gender.toUpperCase()}</td>
-                        <td class="status" data-student-id="${student.id}" data-status="PRESENT">
-                            <span class="status-text">PRESENT</span>
-                            <select class="status-dropdown">
-                                <option value="PRESENT">Mark as PRESENT</option>
-                                <option value="ABSENT">Mark as ABSENT</option>
-                            </select>
-                        </td>
-                    `;
-                    tbody.appendChild(row);
-                    index++;
-                });
-    
-                data.absent.forEach(student => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${index}</td>
-                        <td>${student.full_name}</td>
-                        <td>${student.matric_ID}</td>
-                        <td>${student.gender.toUpperCase()}</td>
-                        <td class="status" data-student-id="${student.id}" data-status="ABSENT">
-                            <span class="status-text">ABSENT</span>
-                            <select class="status-dropdown">
-                                <option value="PRESENT">Mark as PRESENT</option>
-                                <option value="ABSENT">Mark as ABSENT</option>
-                            </select>
-                        </td>
-                    `;
-                    tbody.appendChild(row);
-                    index++;
-                });
-    
-                // Add event listener to handle status change
-                document.querySelectorAll('.status-dropdown').forEach(dropdown => {
-                    dropdown.addEventListener('change', function() {
-                        const cell = this.closest('.status');
-                        const studentId = cell.dataset.studentId;
-                        const newStatus = this.value;
-                        updateStatus(class_id, studentId, newStatus, cell);
-                    });
-                });
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    });
-    
-    function updateStatus(classId, studentId, status, cell) {
-        fetch('update_status.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ class_id: classId, student_id: studentId, status: status }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                cell.querySelector('.status-text').textContent = status;
-                cell.dataset.status = status;
-                if (status === 'PRESENT') {
-                    cell.classList.remove('status-absent');
-                    cell.classList.add('status-present');
-                } else {
-                    cell.classList.remove('status-present');
-                    cell.classList.add('status-absent');
-                }
-            } else {
-                alert('Error updating status: ' + data.message);
-            }
-        })
-        .catch(error => console.error('Error updating status:', error));
-    }
-    
