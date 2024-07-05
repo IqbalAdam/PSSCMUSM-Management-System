@@ -1,6 +1,6 @@
 <?php
 // Need to run command 'php mqtt_subscriber.php' in terminal to make it running in background
-require('phpMQTT\phpMQTT.php');
+require('phpMQTT/phpMQTT.php');
 
 $server = 'broker.hivemq.com';
 $port = 1883; // TCP port for MQTT

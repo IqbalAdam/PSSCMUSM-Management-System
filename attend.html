@@ -65,14 +65,25 @@
     
                 // "Start Session" button event handler
                 $(".start-session").click(function(event) {
+                    event.preventDefault(); 
                     var classDate = $("#class-date").val();
                     if (!classDate) {
-                        event.preventDefault(); 
                         // Show error notification if date is not selected
                         alert("Must select a date first before 'Start Session'");
                     } else {
-                        // Submit the form
-                        $("#dateForm").submit();
+                        // Send AJAX request to clear the file
+                        $.ajax({
+                            url: 'clear_file.php',
+                            type: 'POST',
+                            data: { classDate: classDate },
+                            success: function(response) {
+                                // Optionally, handle the response here
+                                $("#dateForm").submit();
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error clearing file:', error);
+                            }
+                        });
                     }
                 });
             });

@@ -125,7 +125,7 @@
     <!--Navigation header inside body-->
     <div class="navigation-text">
         Student Data Management > Student List<br><br>
-        Current student enrolled in The Art of SIlat Cekak Course
+        Current student enrolled in The Art of Silat Cekak Course
     </div>
 
     <!-- Search box -->
@@ -151,12 +151,21 @@
             </thead>
             <tbody>
                 <?php
-                    //This part is using database.php + edit_student.php + delete_student.php
+                    // This part is using database.php + edit_student.php + delete_student.php
                     // Include the database connection file
                     include 'database.php';
 
+                    // Get the category from the URL
+                    $category = isset($_GET['category']) ? $_GET['category'] : 'overall';
+
                     // Create a query to fetch the required data
-                    $sql = "SELECT full_name, matric_id, gender, ic_number FROM student";
+                    if ($category == 'overall') {
+                        $sql = "SELECT full_name, matric_id, gender, ic_number FROM student";
+                    } else {
+                        $level = intval($category);
+                        $sql = "SELECT full_name, matric_id, gender, ic_number FROM student WHERE level = $level";
+                    }
+
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {

@@ -1,9 +1,6 @@
 <?php
 // This code is used to fetch records of the past classes in record.html (RECORD SUB-MODULE)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "pms";
+include 'database.php';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

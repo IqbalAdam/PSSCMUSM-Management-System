@@ -22,10 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gender = $_POST['gender'];
     $ic_number = $_POST['icNumber'];
     $school = $_POST['school'];
-    $image = $_FILES['image']['name']; // Assuming 'image' is the name of the file input
+    $image = $_FILES['image']['name'];
 
-    // Move uploaded file to desired location
-    $target_dir = "uploads/"; // Directory where you want to store uploaded images
+    // Move uploaded file to uploads/
+    $target_dir = "uploads/"; 
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 

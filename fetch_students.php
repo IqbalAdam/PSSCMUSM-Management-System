@@ -1,9 +1,6 @@
 <?php
-// This code is used to fetch students who is present in the specific class date (RECORDS SUB-MODULE)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "pms";
+// This code is used to fetch students who is present in the specific class date (record2.html)
+include 'databse.php';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

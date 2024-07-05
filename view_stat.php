@@ -88,10 +88,10 @@ if (isset($_GET['matric_id'])) {
     <div class="container">
         <nav>
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="anr.html">Attendance & Records</a></li>
                 <li><a href="sdm.html">Student Data Management</a></li>
-                <li><a href="visual.html">Data Visualization</a></li>
+                <li><a href="visual.html"class="active">Data Visualization</a></li>
             </ul>
             <button class="logout-btn">Logout</button>
         </nav>

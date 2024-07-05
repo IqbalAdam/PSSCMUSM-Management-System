@@ -1,7 +1,7 @@
 <?php
+// This code is used to store date as selected in attend.html
 include 'database.php';
 
-// This code is used to store date as selected in attend.html
 // Create a connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 

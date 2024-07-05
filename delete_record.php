@@ -1,4 +1,6 @@
 <?php
+// This code will handle process of delete class in record.html (RECORD SUB-MODULE)
+$servername = "localhost";
 header('Content-Type: application/json');
 
 $input = json_decode(file_get_contents('php://input'), true);

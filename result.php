@@ -175,8 +175,8 @@
 
     <script>
         function clearSearch() {
-            document.getElementById("searchInput").value = ""; // Clear the search input value
-            searchTable(); // Optionally, you can call the searchTable() function to reset the search results
+            document.getElementById("searchInput").value = "";
+            searchTable(); 
         }
 
         function searchTable() {

@@ -161,7 +161,7 @@ function searchTable() {
 
 function registerStudent() {
     // Redirect to manage2.html
-    window.location.href = "manage2.html";
+    window.location.href = "process_registration.php";
 }
 
 document.querySelectorAll('.delete-btn').forEach(button => {

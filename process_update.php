@@ -1,5 +1,5 @@
 <?php
-// This code is used to update student details in...
+// This code is used to update student details in edit_studnet.php
 include 'database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -8,9 +8,20 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         function fetchLatestMessage() {
+            // Add a unique timestamp to the URL to prevent caching
+            var timestamp = new Date().getTime();
+            var url = 'latest_message.txt?t=' + timestamp;
+
             $.ajax({
-                url: 'latest_message.txt',
+                url: url,
                 success: function(data) {
+                    // Check if the latest_message.txt content is empty
+                    if (!data.trim()) {
+                        console.log("Latest message is empty. Clearing student details.");
+                        clearStudentDetails();
+                        return;
+                    }
+
                     console.log("Latest message (hexadecimal ID):", data);
 
                     // Fetch student details based on the hexadecimal ID
@@ -19,23 +30,43 @@
                         method: 'POST',
                         data: { id: data },
                         success: function(response) {
-                            console.log("Student details:", response);
-                            var student = JSON.parse(response);
-                            document.getElementById("student-name").innerText = student.full_name;
-                            document.getElementById("student-matric-id").innerText = student.matric_id;
-                            document.getElementById("student-gender").innerText = student.gender.toUpperCase();
-                            document.getElementById("student-school").innerText = student.school;
-                            document.getElementById("student-picture").src = student.image;
+                            console.log("Student details response:", response);
+                            try {
+                                var student = JSON.parse(response);
+                                if (student && student.full_name) {
+                                    document.getElementById("student-name").innerText = student.full_name;
+                                    document.getElementById("student-matric-id").innerText = student.matric_id;
+                                    document.getElementById("student-gender").innerText = student.gender.toUpperCase();
+                                    document.getElementById("student-school").innerText = student.school;
+                                    document.getElementById("student-picture").src = student.image;
+                                } else {
+                                    console.log("No student details found or student object is invalid.");
+                                    alert("No student details found or student object is invalid.");
+                                }
+                            } catch (e) {
+                                console.log("Error parsing student details:", e);
+                                alert("Error parsing student details: " + e);
+                            }
                         },
-                        error: function() {
-                            console.log("Error fetching student details.");
+                        error: function(xhr, status, error) {
+                            console.log("Error fetching student details. Status: " + status + ", Error: " + error);
+                            alert("Error fetching student details. Status: " + status + ", Error: " + error);
                         }
                     });
                 },
-                error: function() {
-                    console.log("Error fetching the latest message.");
+                error: function(xhr, status, error) {
+                    console.log("Error fetching the latest message. Status: " + status + ", Error: " + error);
+                    alert("Error fetching the latest message. Status: " + status + ", Error: " + error);
                 }
             });
+        }
+
+        function clearStudentDetails() {
+            document.getElementById("student-name").innerText = "";
+            document.getElementById("student-matric-id").innerText = "";
+            document.getElementById("student-gender").innerText = "";
+            document.getElementById("student-school").innerText = "";
+            document.getElementById("student-picture").src = "images/default_picture.png";
         }
 
         $(document).ready(function() {
@@ -44,20 +75,20 @@
         });
 
         document.addEventListener("DOMContentLoaded", function() {
-        // Select the end session button
-        const endSessionBtn = document.querySelector('.end-session-btn');
+            // Select the end session button
+            const endSessionBtn = document.querySelector('.end-session-btn');
 
-        // Add click event listener to the end session button
-        endSessionBtn.addEventListener('click', function() {
-            // Show confirmation dialog
-            const confirmation = confirm("End Session will stop taking attendance for today's class. \nAre you sure want to stop taking attendance?");
-        
-            // If user clicks OK (true), redirect to anr.html
-            if (confirmation) {
-                window.location.href = "anr.html";
-            }
+            // Add click event listener to the end session button
+            endSessionBtn.addEventListener('click', function() {
+                // Show confirmation dialog
+                const confirmation = confirm("End Session will stop taking attendance for today's class. \nAre you sure want to stop taking attendance?");
+            
+                // If user clicks OK (true), redirect to anr.html
+                if (confirmation) {
+                    window.location.href = "anr.html";
+                }
+            });
         });
-    });
     </script>    
 </head>
 <body>
