@@ -35,6 +35,23 @@
         .category-box:hover {
             background-color: #e0e0e0;
         }
+
+        .upgrade-level-btn {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .upgrade-level-btn button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 20px;
+        }
     </style>
 </head>
 <body>
@@ -68,16 +85,27 @@
         <div class="category-box" onclick="redirectToManage('100')">Level 100</div>
         <div class="category-box" onclick="redirectToManage('200')">Level 200</div>
         <div class="category-box" onclick="redirectToManage('300')">Level 300</div>
+        <div class="category-box" onclick="redirectToManage('400')">Level 400</div>
     </div>
 
-    <!-- Start Session Button -->
-    <div class="start-session-btn">
-        <button class="start-session">Next</button>
+    <!-- Upgrade Level Button -->
+    <div class="upgrade-level-btn">
+        <button onclick="upgradeLevel()">Upgrade Level</button>
+        <button onclick="registerStudent()">Register Student</button>
     </div>
 
     <script>
         function redirectToManage(category) {
             window.location.href = `manage.php?category=${category}`;
+        }
+
+        function upgradeLevel() {
+            if (confirm("Are you sure you want to upgrade the levels of all students?")) {
+                $.post("upgrade_level.php", function(response) {
+                    alert(response);
+                    location.reload(); // Reload the page to see the changes
+                });
+            }
         }
 
         // Add event listener to the logout button

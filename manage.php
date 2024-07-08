@@ -133,7 +133,6 @@
         <input type="text" id="searchInput" placeholder="Search by Name or Matric ID">
         <button onclick="searchTable()">Search</button>
         <button class="clear-red-button" onclick="clearSearch()">Clear</button>
-        <button onclick="registerStudent()">Register Student</button>
     </div>
 
     <!-- Container for the result table -->
