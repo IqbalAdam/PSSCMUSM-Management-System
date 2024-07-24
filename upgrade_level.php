@@ -1,4 +1,5 @@
 <?php
+// This code is used when students in each level is proceeding to next academic session
 // Include the database connection file
 include 'database.php';
 

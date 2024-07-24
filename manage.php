@@ -75,6 +75,10 @@
             background-color: #f44336; /* Red */
         }
 
+        .view-button {
+            background-color: #008CBA; /* Blue */
+        }
+
         /* Custom CSS for search box */
         .search-container {
             margin-top: -40px;
@@ -178,6 +182,7 @@
                                     <td>" . strtoupper($row["gender"]) . "</td>
                                     <td>" . $row["ic_number"] . "</td>
                                     <td class='actions'>
+                                        <a href='view_student.php?matric_id=" . $row["matric_id"] . "'><button class='action-button view-button'>View</button></a>
                                         <a href='edit_student.php?matric_id=" . $row["matric_id"] . "'><button class='action-button edit-button'>Edit</button></a>
                                         <button class='action-button delete-button' onclick='deleteStudent(\"" . $row["matric_id"] . "\")'>Delete</button>
                                     </td>
