@@ -1,5 +1,5 @@
 <?php
-// This code is used when students in each level is proceeding to next academic session
+// This code is used when students in each level are proceeding to the next academic session
 // Include the database connection file
 include 'database.php';
 
@@ -7,12 +7,13 @@ include 'database.php';
 $conn->begin_transaction();
 
 try {
+    // Get the current year
+    $currentYear = date("Y");
+
     // Use a temporary value for level shifting
-    $conn->query("UPDATE student SET level = 500 WHERE level = 300");
+    $conn->query("UPDATE student SET level = 0, end_year = $currentYear WHERE level = 300");
     $conn->query("UPDATE student SET level = 300 WHERE level = 200");
     $conn->query("UPDATE student SET level = 200 WHERE level = 100");
-    $conn->query("DELETE FROM student WHERE level = 400");
-    $conn->query("UPDATE student SET level = 400 WHERE level = 500");
 
     // Commit the transaction
     $conn->commit();

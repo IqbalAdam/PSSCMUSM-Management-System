@@ -6,32 +6,13 @@ include 'database.php';
 $matric_id = $_GET['matric_id'];
 
 // Fetch the student data based on matric_id
-$sql = "SELECT full_name, matric_id, school, image, ic_number, test_1, test_2, theory FROM student WHERE matric_id='$matric_id'";
+$sql = "SELECT full_name, matric_id, school, image, ic_number, u1_asas, u2_jatuh, u3_potong, theory, ko_k FROM student WHERE matric_id='$matric_id'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
 } else {
     echo "No results found";
-    exit();
-}
-
-// Update the student data if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $test_1 = $_POST['test_1'];
-    $test_2 = $_POST['test_2'];
-    $theory = $_POST['theory'];
-
-    $update_sql = "UPDATE student SET test_1='$test_1', test_2='$test_2', theory='$theory' WHERE matric_id='$matric_id'";
-    
-    if ($conn->query($update_sql) === TRUE) {
-        echo "Record updated successfully";
-    } else {
-        echo "Error updating record: " . $conn->error;
-    }
-
-    // Redirect to the result page after updating
-    header("Location: result.php");
     exit();
 }
 
@@ -43,7 +24,6 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Student Results</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="edit-page">
@@ -69,7 +49,7 @@ $conn->close();
 
     <!--Navigation header inside body-->
     <div class="navigation-text">
-        Student Data Management > Student Results > Edit Result
+        Student Data Management > Student List > View Student
     </div>
 
     <form method="POST" class="edit-form">
@@ -96,19 +76,28 @@ $conn->close();
                 <input type="text" id="school" name="school" value="<?php echo $row['school']; ?>" readonly>
             </div>
         </div>
+        
         <!-- Test Scores -->
         <div class="test-scores">
             <div class="test-score">
-                <label for="test_1"><br>Test 1:</label>
-                <input value="<?php echo $row['test_1']; ?>" readonly>
+                <label for="u1_asas"><br>Ujian Asas:</label>
+                <input value="<?php echo $row['u1_asas']; ?>" readonly>
             </div>
             <div class="test-score">
-                <label for="test_2"><br>Test 2:</label>
-                <input value="<?php echo $row['test_2']; ?>" readonly>
+                <label for="u2_jatuh"><br>Ujian Jatuh:</label>
+                <input value="<?php echo $row['u2_jatuh']; ?>" readonly>
             </div>
             <div class="test-score">
-                <label for="theory"><br>Theory Test:</label>
+                <label for="u3_potong"><br>Ujian Potong:</label>
+                <input value="<?php echo $row['u3_potong']; ?>" readonly>
+            </div>
+            <div class="test-score">
+                <label for="theory"><br>Ujian Teori:</label>
                 <input value="<?php echo $row['theory']; ?>" readonly>
+            </div>
+            <div class="test-score">
+                <label for="ko_k"><br>Penglibatan Ko-K:</label>
+                <input value="<?php echo $row['ko_k']; ?>" readonly>
             </div>
         </div>
     </form>

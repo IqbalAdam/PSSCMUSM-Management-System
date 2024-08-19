@@ -81,7 +81,7 @@
 
         /* Custom CSS for search box */
         .search-container {
-            margin-top: -40px;
+            margin-top: -25px;
             margin-left: 261px;
         }
 
@@ -116,10 +116,11 @@
     </header>
     <div class="container">
         <nav>
-            <ul>
+        <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="sdm.html" class="active" >Student Data Management</a></li>
+                <li><a href="test_class.html">Test Result</a></li>
                 <li><a href="anr.html">Attendance & Records</a></li>
-                <li><a href="sdm.html" class="active">Student Data Management</a></li>
                 <li><a href="visual.html">Data Visualization</a></li>
             </ul>
             <button class="logout-btn">Logout</button>
@@ -128,8 +129,7 @@
 
     <!--Navigation header inside body-->
     <div class="navigation-text">
-        Student Data Management > Student List<br><br>
-        Current student enrolled in The Art of Silat Cekak Course
+        Student Data Management > Student List
     </div>
 
     <!-- Search box -->
@@ -148,26 +148,34 @@
                     <th>Name</th>
                     <th>Matric ID</th>
                     <th>Gender</th>
-                    <th>IC Number</th>
+                    <?php
+                    // Get the category from the URL
+                    $category = isset($_GET['category']) ? $_GET['category'] : 'overall';
+                    
+                    // Display appropriate column header based on the category
+                    if ($category == '0') {
+                        echo '<th>Year Ended</th>';
+                    } else {
+                        echo '<th>IC Number</th>';
+                    }
+                    ?>
                     <th class="actions">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                    // This part is using database.php + edit_student.php + delete_student.php
                     // Include the database connection file
                     include 'database.php';
 
-                    // Get the category from the URL
-                    $category = isset($_GET['category']) ? $_GET['category'] : 'overall';
-
                     // Create a query to fetch the required data
                     if ($category == 'overall') {
-                        $sql = "SELECT full_name, matric_id, gender, ic_number FROM student";
+                        $sql = "SELECT full_name, matric_id, gender, ic_number FROM student WHERE level IN (100, 200, 300)";
+                    } elseif ($category == '0') {
+                        $sql = "SELECT full_name, matric_id, gender, end_year FROM student WHERE level = 0";
                     } else {
                         $level = intval($category);
                         $sql = "SELECT full_name, matric_id, gender, ic_number FROM student WHERE level = $level";
-                    }
+                    }                    
 
                     $result = $conn->query($sql);
 
@@ -179,13 +187,17 @@
                                     <td>" . $counter++ . "</td>
                                     <td>" . $row["full_name"] . "</td>
                                     <td>" . $row["matric_id"] . "</td>
-                                    <td>" . strtoupper($row["gender"]) . "</td>
-                                    <td>" . $row["ic_number"] . "</td>
-                                    <td class='actions'>
-                                        <a href='view_student.php?matric_id=" . $row["matric_id"] . "'><button class='action-button view-button'>View</button></a>
-                                        <a href='edit_student.php?matric_id=" . $row["matric_id"] . "'><button class='action-button edit-button'>Edit</button></a>
-                                        <button class='action-button delete-button' onclick='deleteStudent(\"" . $row["matric_id"] . "\")'>Delete</button>
-                                    </td>
+                                    <td>" . strtoupper($row["gender"]) . "</td>";
+                            if ($category == '0') {
+                                echo "<td>" . $row["end_year"] . "</td>";
+                            } else {
+                                echo "<td>" . $row["ic_number"] . "</td>";
+                            }
+                            echo "<td class='actions'>
+                                    <a href='view_student.php?matric_id=" . $row["matric_id"] . "'><button class='action-button view-button'>View</button></a>
+                                    <a href='edit_student.php?matric_id=" . $row["matric_id"] . "'><button class='action-button edit-button'>Edit</button></a>
+                                    <button class='action-button delete-button' onclick='deleteStudent(\"" . $row["matric_id"] . "\")'>Delete</button>
+                                  </td>
                                   </tr>";
                         }
                     } else {

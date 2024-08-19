@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="script.js" defer></script>
+    <style>
+        .category-container {
+            display: flex;
+            justify-content: left;
+            gap: 20px;
+            margin-top: 20px;
+            margin-left: 350px;
+        }
+
+        .category-box {
+            width: 190px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            border: 2px solid #004080;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .category-box:hover {
+            background-color: #d9e6f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <h1>PSSCMUSM Management System</h1>
+    </header>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sdm.html">Student Data Management</a></li>
+                <li><a href="test_class.html" class="active">Test Result</a></li>
+                <li><a href="anr.html">Attendance & Records</a></li>
+                <li><a href="visual.html">Data Visualization</a></li>
+            </ul>
+            <button class="logout-btn">Logout</button>
+        </nav>
+    </div>
+
+    <div class="navigation-text">
+        Student Data Management<br><br><br><br>Choose student category to view list<br>
+    </div>
+
+    <div class="category-container">
+        <div class="category-box" onclick="redirectToManage('100')">Level 100</div>
+        <div class="category-box" onclick="redirectToManage('200')">Level 200</div>
+        <div class="category-box" onclick="redirectToManage('300')">Level 300</div>
+        <div class="category-box" onclick="redirectToManage('0')">Alumni</div>
+    </div>
+
+    <script>
+        function redirectToManage(level) {
+            window.location.href = `result.php?level=${level}`;
+        }
+
+        function upgradeLevel() {
+            if (confirm("Are you sure you want to upgrade the levels of all students?")) {
+                $.post("upgrade_level.php", function(response) {
+                    alert(response);
+                    location.reload();
+                });
+            }
+        }
+
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
