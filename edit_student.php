@@ -41,8 +41,9 @@ if (isset($_GET['matric_id'])) {
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="sdm.html" class="active" >Student Data Management</a></li>
+                <li><a href="test_class.html">Test Result</a></li>
                 <li><a href="anr.html">Attendance & Records</a></li>
-                <li><a href="sdm.html" class="active">Student Data Management</a></li>
                 <li><a href="visual.html">Data Visualization</a></li>
             </ul>
             <button class="logout-btn">Logout</button>
@@ -55,7 +56,7 @@ if (isset($_GET['matric_id'])) {
     </div>
 
     <div class="student-details-container">
-        <form id="studentForm" action="process_update.php" method="post" enctype="multipart/form-data">
+        <form id="studentForm" enctype="multipart/form-data">
             <input type="hidden" name="matric_id" value="<?php echo $row['matric_id']; ?>">
             <div class="form-group">
                 <label for="fullName">Full Name as in IC</label>
@@ -95,6 +96,27 @@ if (isset($_GET['matric_id'])) {
         document.querySelector('.logout-btn').addEventListener('click', function() {
             // Redirect to login.html
             window.location.href = 'login.html';
+        });
+
+        // Handle form submission with JavaScript
+        document.getElementById('studentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData(this);
+
+            fetch('process_update.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert('Student details updated successfully!');
+                window.history.back(); // Redirect to the previous page
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while updating the student details.');
+            });
         });
     </script>
 </body>

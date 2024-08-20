@@ -6,7 +6,6 @@
     <title>PSSCMUSM Management System</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Custom CSS for the table */
         .container {
             margin-top: 20px;
             overflow-x: auto;
@@ -23,7 +22,7 @@
         }
 
         th, td {
-            padding: 12px 15px;
+            padding: 10px 10px;
             text-align: center;
             border-bottom: 1px solid #000000;
             border-right: 1px solid #000000; 
@@ -56,7 +55,6 @@
             text-align: center;
         }
 
-        /* Custom CSS for search box */
         .search-container {
             margin-top: -20px;
             margin-left: 261px;
@@ -92,7 +90,6 @@
     </style>
 </head>
 <body>
-    <!--Header with title and PSSCMUSM logo-->
     <header>
         <div class="logo">
             <img src="images/logo.png" alt="Logo">
@@ -103,27 +100,52 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="sdm.html">Student Data Management</a></li>
+                <li><a href="test_class.html" class="active">Test Result</a></li>
                 <li><a href="anr.html">Attendance & Records</a></li>
-                <li><a href="sdm.html" class="active">Student Data Management</a></li>
                 <li><a href="visual.html">Data Visualization</a></li>
             </ul>
             <button class="logout-btn">Logout</button>
         </nav>
     </div>
 
-    <!--Navigation header inside body-->
+    <?php
+    // Include the database connection file
+    include 'database.php';
+
+    // Get the level from the URL or default to '100'
+    $level = isset($_GET['level']) ? $_GET['level'] : '100';
+
+    // Determine the level description
+    switch ($level) {
+        case '100':
+            $levelDescription = 'Level 100';
+            break;
+        case '200':
+            $levelDescription = 'Level 200';
+            break;
+        case '300':
+            $levelDescription = 'Level 300';
+            break;
+        case '0':
+            $levelDescription = 'Graduated Students';
+            break;
+        default:
+            $levelDescription = 'Level 100';
+            break;
+    }
+    ?>
+
     <div class="navigation-text">
-        Student Data Management > Student Results
+        Student Data Management > Student Results (<?php echo $levelDescription; ?>)
     </div>
 
-    <!-- Search box -->
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Search by Name or Matric ID or Scores">
         <button onclick="searchTable()">Search</button>
         <button class="clear-red-button" onclick="clearSearch()">Clear</button>
     </div>
 
-    <!-- Container for the result table -->
     <div class="container">
         <table id="tableBody">
             <thead>
@@ -131,37 +153,70 @@
                     <th>No.</th>
                     <th>Name</th>
                     <th>Matric ID</th>
-                    <th>Test 1</th>
-                    <th>Test 2</th>
-                    <th>Theory Test</th>
-                    <th class="actions">Actions</th>
+                    <?php
+                        $columns = [];
+                        $columnNames = [];
+
+                        switch ($level) {
+                            case '100':
+                                $columns = ['u1_asas', 'u2_jatuh', 'u3_potong', 'theory', 'ko_k'];
+                                $columnNames = ['Ujian Asas', 'Ujian Jatuh', 'Ujian Potong', 'Ujian Teori', 'Penglibatan Ko-K'];
+                                break;
+                            case '200':
+                                $columns = ['u_usr', 'ko_k_2'];
+                                $columnNames = ['USR', 'Penglibatan Ko-K'];
+                                break;
+                            case '300':
+                                $columns = ['ko_k_3', 'u_demo'];
+                                $columnNames = ['Penglibatan Ko-K', 'Ujian Demo'];
+                                break;
+                            case '0':
+                                $columns = ['u1_asas', 'u2_jatuh', 'u3_potong', 'theory', 'ko_k', 'ko_k_2', 'ko_k_3','u_usr','u_demo'];
+                                $columnNames = ['Ujian Asas', 'Ujian Jatuh', 'Ujian Potong', 'Ujian Teori', 'Penglibatan Ko-K 1' , 'Penglibatan Ko-K 2', 'Penglibatan Ko-K 3', 'USR', 'Ujian Demo'];
+                                break;
+                            default:
+                                $columns = ['u1_asas', 'u2_jatuh', 'u3_potong', 'theory', 'ko_k'];
+                                $columnNames = ['Ujian Asas', 'Ujian Jatuh', 'Ujian Potong', 'Ujian Teori', 'Penglibatan Ko-K'];
+                                break;
+                        }
+
+                        foreach ($columnNames as $columnName) {
+                            echo "<th>{$columnName}</th>";
+                        }
+                        
+                        if ($level != '0') {
+                            echo "<th class='actions'>Actions</th>";
+                        }
+                    ?>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                    // Include the database connection file
-                    include 'database.php';
-
-                    // Create a query to fetch the required data
-                    $sql = "SELECT full_name, matric_id, test_1, test_2, theory FROM student";
-                    $result = $conn->query($sql);
+                    $sql = "SELECT full_name, matric_id, " . implode(", ", $columns) . " FROM student WHERE level=?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("i", $level);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
 
                     if ($result->num_rows > 0) {
-                        // Output data of each row
                         $counter = 1;
-                        while($row = $result->fetch_assoc()) {
+                        while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                                     <td>" . $counter++ . "</td>
                                     <td>" . $row["full_name"] . "</td>
-                                    <td>" . $row["matric_id"] . "</td>
-                                    <td>" . $row["test_1"] . "</td>
-                                    <td>" . $row["test_2"] . "</td>
-                                    <td>" . $row["theory"] . "</td>
-                                    <td class='actions'><a href='edit.php?matric_id=" . $row["matric_id"] . "'><img src='images/pencil.png' alt='Edit' class='table-img'></a></td>
-                                  </tr>";
+                                    <td>" . $row["matric_id"] . "</td>";
+
+                            foreach ($columns as $column) {
+                                echo "<td>" . $row[$column] . "</td>";
+                            }
+
+                            if ($level != '0') {
+                                echo "<td class='actions'><a href='edit.php?matric_id=" . $row["matric_id"] . "'><img src='images/pencil.png' alt='Edit' class='table-img'></a></td>";
+                            }
+                            echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='7'>No results found</td></tr>";
+                        echo "<tr><td colspan='" . (3 + count($columns)) . "'>No results found</td></tr>";
                     }
 
                     $conn->close();
@@ -170,7 +225,6 @@
         </table>
     </div>
 
-    <!--Referring to external JavaScript file-->
     <script src="script.js" defer></script>
 
     <script>
@@ -203,9 +257,7 @@
             }
         }
 
-        // Add event listener to the logout button
         document.querySelector('.logout-btn').addEventListener('click', function() {
-            // Redirect to login.html
             window.location.href = 'login.html';
         });
     </script>

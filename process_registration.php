@@ -77,8 +77,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="anr.html">Attendance & Records</a></li>
                 <li><a href="sdm.html" class="active">Student Data Management</a></li>
+                <li><a href="test_class.html">Test Result</a></li>
+                <li><a href="anr.html">Attendance & Records</a></li>
                 <li><a href="visual.html">Data Visualization</a></li>
             </ul>
             <button class="logout-btn">Logout</button>
@@ -87,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- Navigation text -->
     <div class="navigation-text">
-        Student Data Management > Student List > Register Student
+        Student Data Management > Register Student
     </div>
 
     <div class="student-details-container">

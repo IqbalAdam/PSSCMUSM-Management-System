@@ -6,13 +6,95 @@
     <title>PSSCMUSM Management System</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* Ensure the table container doesn't exceed the available width */
+        .table-container {
+            width: 100%;
+            overflow: visible; /* Ensure the table doesn't have a separate scrollbar */
+            margin-left: 260px;
+        }
+
+        /* Styling the filter section */
         .filter-container {
-            margin-left: 880px;
             display: flex;
             align-items: center;
+            margin-left: 900px;
+            margin-top: -42px;
             gap: 15px;
             padding: 20px;
-            margin-bottom: -50px;
+        }
+
+        /* Styling for the select elements and button */
+        .filter-container label {
+            font-weight: bold;
+        }
+
+        .filter-container select {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .filter-container button {
+            padding: 6px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .filter-container button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Table styling */
+        table {
+            margin-left: -80px;
+            width: 85%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            margin-top: 100px;
+            background-color: #f2f2f2;
+        }
+
+        /* Make sure the table rows wrap the content */
+        tr {
+            word-wrap: break-word;
+        }
+
+        /* Adjusting the buttons inside the table */
+        .view-rcrd, .delete-rcrd {
+            padding: 5px 10px;
+            margin: 2px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .view-rcrd {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .delete-rcrd {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .view-rcrd:hover {
+            background-color: #218838;
+        }
+
+        .delete-rcrd:hover {
+            background-color: #c82333;
         }
     </style>
 </head>
@@ -199,4 +281,3 @@
     </script>
 </body>
 </html>
-
