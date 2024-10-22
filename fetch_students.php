@@ -1,6 +1,8 @@
 <?php
-// This code is used to fetch students who is present in the specific class date (record2.html)
-include 'databse.php';
+$servername = "localhost";
+$username = "root"; // Replace with your database username
+$password = ""; // Replace with your database password
+$dbname = "pms"; // Your database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -10,20 +12,27 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch all students
-$sql = "SELECT id, full_name, matric_ID, gender FROM student";
+$sql = "SELECT full_name, matric_id, gender, ic_number FROM student";
 $result = $conn->query($sql);
 
-$students = array();
-
 if ($result->num_rows > 0) {
+    $no = 1;
     while($row = $result->fetch_assoc()) {
-        $students[] = $row;
+        echo "<tr>";
+        echo "<td>" . $no . "</td>";
+        echo "<td>" . $row["full_name"] . "</td>";
+        echo "<td>" . $row["matric_id"] . "</td>";
+        echo "<td>" . $row["gender"] . "</td>";
+        echo "<td>" . $row["ic_number"] . "</td>";
+        echo '<td>
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+              </td>';
+        echo "</tr>";
+        $no++;
     }
+} else {
+    echo "<tr><td colspan='6'>No students found</td></tr>";
 }
-
 $conn->close();
-
-header('Content-Type: application/json');
-echo json_encode($students);
 ?>

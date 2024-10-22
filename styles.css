@@ -6,201 +6,202 @@
 /* ----------------------------------------------------------------------------------------------------------------------- */
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #e6f7ff;
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: #e6f7ff;
+    font-family: Arial, sans-serif;
 }
 
 /* Header style */
 header {
-background-color: #004080; 
-color: #fff;
-padding: 20px;
-text-align: center;
-display: flex;
-align-items: center;
-justify-content: center;
-position: fixed; 
-top: 0; 
-width: 100%; 
-z-index: 1000; 
+  background-color: #004080; 
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
+  z-index: 1000; 
 }
 
 /* Space between PSSCMUSM logo and text in header*/
 h1 {
-margin-left: 10px;
-font-family: sans-serif;
+  margin-left: 10px;
+  font-family: sans-serif;
 }
 
 /* PSSCMUSM logo in header*/
 .logo img {
-height: 70px;
-margin-right: 10px;
+  height: 70px;
+  margin-right: 10px;
 }
 
 .container {
-display: flex;
-flex-direction: row;
-padding-top: 90px;
+  display: flex;
+  flex-direction: row;
+  padding-top: 90px;
 }
 
 /* CSS for the left-side navigation bar*/
 nav {
-background-color: #d9e6f2;
-padding: 20px;
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-position: fixed;
-top: 120px;
-bottom: 0;
+  background-color: #d9e6f2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: fixed;
+  top: 120px;
+  bottom: 0;
 }
 
 nav ul {
-list-style-type: none;
-padding: 0;
-margin: 0;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 nav ul li {
-margin-bottom: 10px;
-margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 /* CSS for navigation bar */
 nav ul li a {
-color: #fff;
-background-color: #004080;
-text-decoration: none;
-display: block;
-padding: 10px;
-border-radius: 5px; 
-margin-bottom: 20px; 
+  color: #fff;
+  background-color: #004080;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 5px; 
+  margin-bottom: 20px; 
 }
 
 nav ul li a.active {
-font-weight: bold;
+  font-weight: bold;
 }
 
 /* Log Out button in side navigation bar */
 .logout-btn {
-margin-top: auto; 
-width: 100%;
-padding: 10px;
-background-color: #004080;
-color: #fff;
-border: none;
-cursor: pointer;
+  margin-top: auto; 
+  width: 100%;
+  padding: 10px;
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
 
 /* Navigation text in the body */
 .navigation-text {
-font-size: 18px;
-font-weight: bold;
-text-align: left;
-margin-top: 55px; 
-margin-left: 350px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 55px; 
+  margin-left: 350px;
 }
-
-/* Common CSS ended */
 
 /* CSS for the boxes in index.html */
 #index main {
-display: flex;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
-padding-top: 150px;
-margin-top:80px;
-margin-right: -30px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 150px;
+  margin-top: -50px; 
+  margin-right: -190px; 
 }
 
 #index .box {
-width: 300px;
-height: 300px;
-background-color: #fff;
-border: 2px solid #004080;
-border-radius: 12px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-margin: 20px; 
-text-decoration: none;
+  width: 300px;
+  height: 300px;
+  background-color: #fff;
+  border: 2px solid #004080;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px; 
+  text-decoration: none;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
 /*                               CSS in anr.html                                                                           */
 /* ----------------------------------------------------------------------------------------------------------------------- */
 
+/* CSS for the main content area */
 main {
-display: flex;
-justify-content: center;
-align-items: center;
-margin-top: 150px; 
-padding: 80px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px; 
+  padding: 80px;
+ 
 }
 
 .tiles {
-display: flex;
-justify-content: space-around;
-margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
 }
 
 .tile {
-padding: 20px;
-background-color: #004080;
-color: #fff;
-text-decoration: none;
+  padding: 20px;
+  background-color: #004080;
+  color: #fff;
+  text-decoration: none;
 }
 
 .tile:hover {
-background-color: #002040;
+  background-color: #002040;
 }
 
+/* CSS for the boxes */
 .box {
-width: 300px;
-height: 300px;
-background-color: #fff;
-border: 2px solid #004080;
-border-radius: 12px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-margin-right: 100px;
-margin-left: 350px;
-margin-top: -100px;
-text-decoration: none;
+  width: 300px;
+  height: 300px;
+  background-color: #fff;
+  border: 2px solid #004080;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 100px;
+  margin-left: 350px;
+  margin-top: -100px;
+  text-decoration: none;
 }
 
 .box h2 {
-margin-top: 20px;
-font-size: 24px;
-text-align: center;
-color: #004080; 
-font-family: 'Roboto', sans-serif; 
+  margin-top: 20px;
+  font-size: 24px;
+  text-align: center;
+  color: #004080; 
+  font-family: 'Roboto', sans-serif; 
 }
 
 .box img {
-margin-top: 20px;
-width: 100px; 
-height: auto;
+  margin-top: 20px;
+  width: 100px; 
+  height: auto;
 }
 
 .box p {
-margin-top: 10px; 
-text-align: center;
-color: #333; 
-font-family: 'Roboto', sans-serif; 
+  margin-top: 10px; 
+  text-align: center;
+  color: #333; 
+  font-family: 'Roboto', sans-serif; 
 }
 
+/* Adjust space between boxes */
 .records {
-margin-left: 30px; 
+  margin-left: 30px; 
 }
+
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
 /*                               CSS in attend.html                                                                        */
@@ -209,44 +210,36 @@ margin-left: 30px;
 /* CSS for choose date and class id */
 .choose-date,
 .class-id {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
+    margin-top: -200px;
 }
 
+/* Choose Class Data text position */
 .choose-date label,
 .class-id label {
-  display: block;
-  margin-bottom: 20px;
-  margin-left: 50px;
+    display: block;
+    margin-bottom: 20px;
+    margin-left: 50px;
 }
 
+/* Choose Class Data box position */
 .choose-date input,
 .class-id input {
-  width: 200px; 
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-left: 50px;
+    width: 200px; 
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 50px;
 }
 
 .choose-date,
 .class-id {
-  display: inline-block; 
-  vertical-align: top; 
-  margin-left: 20px; 
+    display: inline-block; 
+    vertical-align: top; 
+    margin-left: 20px; 
 }
 
-/* Container for class setup section */
-.class-setup-container {
-  display: flex;
-  align-items: center;
-  margin-left: 50px;
-}
-
-.start-session-btn {
-  margin-left: 20px;
-  margin-top: 20px;
-}
-
+/* Start session button */
 .start-session-btn .start-session {
   background-color: #004080;
   color: #fff;
@@ -254,6 +247,9 @@ margin-left: 30px;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
 
 .start-session-btn .start-session:hover {
@@ -265,60 +261,46 @@ margin-left: 30px;
 /* ----------------------------------------------------------------------------------------------------------------------- */
 
 .student-details {
-display: flex;
-justify-content: center;
-align-items: center;
-margin-top: 100px;
-margin-left: 50px;
-}
-
-.student-details-table {
-width: 60%;
-border-collapse: collapse;
-margin: 20px;
-background-color: #ffffff; 
-border: 1px solid #ddd;
-border-radius: 8px;
-padding: 20px;
-box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-}
-
-.student-details-table td {
-padding: 10px;
-border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 }
 
 .student-picture {
-width: 150px;
-height: 150px;
-padding: 10px;
+  width: 200px;
+  height: 200px;
+  border: 2px solid #000;
+  margin-right: 20px;
 }
 
-.student-picture img {
-width: 200px;
-height: 200px;
-object-fit: cover;
-
+.student-info {
+  display: flex;
+  flex-direction: column;
 }
 
+.student-info-item {
+  margin-bottom: 10px;
+}
+
+/* End Session button */
 .end-session-btn {
-background-color: #e00909;
-color: #fff;
-border: none;
-padding: 10px 20px;
-border-radius: 5px;
-cursor: pointer;
-display: block;
-margin: 20px auto;
-}
-
-.end-session-btn:hover {
-background-color: #002040;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
 /*                               CSS in record.html                                                                        */
 /* ----------------------------------------------------------------------------------------------------------------------- */
+
+
 
 .table-container {
   width: calc(100% - 240px);
@@ -328,10 +310,33 @@ background-color: #002040;
   padding-left: 20px; 
 }
 
+
 .table-container th {
   background-color: #f2f2f2;
 }
 
+/*Sort button beside percentage*/
+#sortBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  vertical-align: middle;
+  padding: 0; 
+  margin: 0; 
+}
+
+/* Rotate arrow for ascending order */
+#sortBtn.asc {
+  transform: rotate(0deg); 
+}
+
+/* Rotate arrow for descending order */
+#sortBtn.desc {
+  transform: rotate(180deg); 
+}
+
+/* Alternating row colors */
 .table-container tr:nth-child(even) {
   background-color: #f2f2f2;
 }
@@ -339,31 +344,22 @@ background-color: #002040;
 /* Adjustments for the table in record.html */
 #recordTable th:nth-child(2),
 #recordTable td:nth-child(2) {
-  width: 380px; 
+  width: 440px; /* Adjust the width as needed */
 }
 
+/* Add rotating animation for filter button icons */
+.rotate180 {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+/* Resize the dropdown.png image */
 img#dateFilterBtn,
 img#percentageFilterBtn {
-    width: 16px;
-    height: 16px; 
+    width: 16px; /* Adjust the width as needed */
+    height: 16px; /* Adjust the height as needed */
 }
 
-/* ----------------------------------------------------------------------------------------------------------------------- */
-/*                               CSS in record2.html                                                                           */
-/* ----------------------------------------------------------------------------------------------------------------------- */
-
-/* Specific styles for PRESENT and ABSENT statuses */
-.status-present {
-  color: #39FF14;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.status-absent {
-  color: red;
-  font-weight: bold;
-  cursor: pointer; 
-}
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
 /*                               CSS in sdm.html                                                                           */
@@ -441,12 +437,12 @@ img#percentageFilterBtn {
 }
 
 .search-container button.clear-button {
-  background-color: #ec0202; 
-  color: #fff; 
+  background-color: #ec0202; /* Change to your desired color */
+  color: #fff; /* Text color */
 }
 
 .search-container button.clear-button:hover {
-  background-color: #ec0202; 
+  background-color: #ec0202; /* Change to your desired color on hover */
 }
 
 .search-container button:last-child {
@@ -462,16 +458,15 @@ img#percentageFilterBtn {
 .table-box {
   border-radius: 8px;
   overflow: hidden; 
-  width: calc(100% - 260px);
+  width: 80%; 
   max-height: 520px; 
   margin: 0 auto; 
   margin-top: 40px;
-  margin-left: 100px;
-  padding: 0 10px; 
-  box-sizing: border-box; 
-  overflow-y: scroll;
+  margin-left: 130px;
+  overflow-y: auto; 
 }
 
+/* Adjustments for the table container */
 .table-container th,
 .table-container td {
   border: 1px solid #ddd;
@@ -526,8 +521,8 @@ img#percentageFilterBtn {
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
-  margin-top: 90px;
-  margin-right: 200px;
+  margin-top: 40px;
+  margin-right: 150px;
 }
 
 .form-group.inline {
@@ -619,29 +614,30 @@ img#percentageFilterBtn {
 /*                               CSS in individual.html                                                                    */
 /* ----------------------------------------------------------------------------------------------------------------------- */
 
-.table-container th:nth-child(2),
-.table-container td:nth-child(2) {
-  width: 30%; 
-  text-align: left; 
+/* CSS for the graph container */
+.graph-container {
+  margin-top: -50px;
+  margin-left: 350px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+}
+
+/* CSS for the graph canvas */
+.graph-canvas {
+  width: 600px;
+  height: 400px;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
 /*                                    CSS in login.html                                                                    */
 /* ----------------------------------------------------------------------------------------------------------------------- */
 
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-  margin-bottom: 20px;
-}
-
 .login-box {
   width: 300px;
   padding: 40px;
-  margin: 20px auto 0 auto; 
+  margin-left: 600px;
   margin-top: 150px;
+  position: relative;
   background: #fff;
   text-align: center;
   border-radius: 10px;
@@ -666,7 +662,6 @@ img#percentageFilterBtn {
 }
 
 .btn {
-  margin-left: 10px;
   width: 100%;
   padding: 10px;
   border: none;
@@ -674,244 +669,19 @@ img#percentageFilterBtn {
   background: #007bff;
   color: #fff;
   cursor: pointer;
-  margin-bottom: 10px;
+  transition: background 0.3s;
 }
 
 .btn:hover {
   background: #0056b3;
 }
 
-/* ----------------------------------------------------------------------------------------------------------------------- */
-/*                                    CSS in overall.html                                                                  */
-/* ----------------------------------------------------------------------------------------------------------------------- */
 
-.dropdown-container {
-  margin-left: 880px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 20px;
-  margin-bottom: -50px;
-}
 
-.dropdown-container label {
-  font-size: 16px;
-  margin-right: 10px;
-}
 
-.dropdown-container select {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f9f9f9;
-  outline: none;
-  transition: border-color 0.3s;
-}
-
-.dropdown-container select:focus {
-  border-color: #007bff;
-}
-
-#displayDataBtn {
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#displayDataBtn:hover {
-  background-color: #0056b3;
-}
-
-#displayDataBtn:focus {
-  outline: none;
-}
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
-/*                                    CSS in view_stat.php                                                                 */
+/*                                    CSS in visual.html                                                                   */
 /* ----------------------------------------------------------------------------------------------------------------------- */
-
-.attendance-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px auto;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.attendance-table th,
-.attendance-table td {
-  padding: 12px;
-  border: 1px solid #ddd;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.attendance-table th {
-  background-color: #004080;
-  color: #ffffff;
-}
-
-.attendance-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.attendance-table tr:nth-child(odd) {
-  background-color: #ffffff;
-}
-
-.view-stat .student-details {
-  margin-top: 50px;
-  margin-bottom: 40px;
-  padding: 20px;
-  border: 2px solid #004080;
-  background-color: #f9f9f9;
-  width: 1000px;
-  margin-left: 360px;
-  margin-right: 170px;
-}
-
-.view-stat .student-info {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  width: 1000px;
-  margin-right: 20px;
-}
-
-.view-stat .student-image {
-  margin-top: 8px;
-  width: 260px; 
-  height: 210px; 
-  object-fit: cover; 
-  border: 2px solid #004080;
-}
-
-.view-stat .info-table, .view-stat .scores-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.view-stat .info-table th, .view-stat .scores-table th {
-  background-color: #004080;
-  color: #ffffff;
-  padding: 8px;
-  text-align: left;
-}
-
-.view-stat .info-table td, .view-stat .scores-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-}
-
-.view-stat .scores-table {
-  margin-top: 20px;
-  width: 250px;
-}
-
-.scores-table th, .scores-table td {
-  width: 50%;
-}
-
-.view-stat .scores-table th {
-  background-color: #004080;
-  color: #ffffff;
-  padding: 8px;
-  text-align: left;
-}
-
-.scores-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left; 
-}
-
-.graph-container {
-  margin-top: 20px;
-  width: 100%;
-  max-width: 800px;
-}
-
-.back-link {
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  color: #ffffff;
-  background-color: #004080;
-  padding: 10px 20px;
-  border-radius: 4px;
-  text-decoration: none;
-  width: fit-content;
-}
-
-.back-link:hover {
-  background-color: #002040;
-}
-
-/* CSS for the graph container */
-.graph-container {
-  margin-bottom: 80px; 
-  margin-left: 500px; 
-  margin-right: auto;
-  width: 80%; 
-}
-
-/* ----------------------------------------------------------------------------------------------------------------------- */
-/*                                    CSS for graphs canvas                                                                */
-/* ----------------------------------------------------------------------------------------------------------------------- */
-
-.chart-container {
-  margin-top: 30px;
-  width: 70%;
-  margin-left: 350px;
-  padding: 20px;
-}
-
-canvas {
-  background: #fff;
-  border: 3px solid #ddd;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-
-
-
-
-
-/* Hide dropdown by default */
-.status-dropdown {
-    display: none;
-}
-
-.status:hover .status-dropdown {
-    display: inline-block;
-}
-
-.status:hover .status-text {
-    display: none;
-}
-
-.status {
-    position: relative;
-}
-
-.status-dropdown {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-
-
 
 

@@ -19,14 +19,14 @@
             margin-right: 150px;
             margin-top: -40px;
             margin-bottom: 50px;
-            border: 2px solid #000000; /* Add border to the table */
+            border: 1px solid #ddd; /* Add border to the table */
         }
 
         th, td {
             padding: 12px 15px;
             text-align: center;
-            border-bottom: 1px solid #000000;
-            border-right: 1px solid #000000; /* Add right border to cells */
+            border-bottom: 1px solid #ddd;
+            border-right: 1px solid #ddd; /* Add right border to cells */
         }
 
         th:first-child,
@@ -75,13 +75,9 @@
             background-color: #f44336; /* Red */
         }
 
-        .view-button {
-            background-color: #008CBA; /* Blue */
-        }
-
         /* Custom CSS for search box */
         .search-container {
-            margin-top: -25px;
+            margin-top: -20px;
             margin-left: 261px;
         }
 
@@ -103,7 +99,15 @@
             font-size: 16px;
             margin-left: 2px;
         }
-                
+
+        button.clear {
+            background-color: #000000;
+        }
+
+        .search-container button:last-child {
+            margin-right: 0;
+            background-color: #ec0202;
+        }
     </style>
 </head>
 <body>
@@ -116,11 +120,10 @@
     </header>
     <div class="container">
         <nav>
-        <ul>
+            <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="sdm.html" class="active" >Student Data Management</a></li>
-                <li><a href="test_class.html">Test Result</a></li>
                 <li><a href="anr.html">Attendance & Records</a></li>
+                <li><a href="sdm.html" class="active">Student Data Management</a></li>
                 <li><a href="visual.html">Data Visualization</a></li>
             </ul>
             <button class="logout-btn">Logout</button>
@@ -137,6 +140,7 @@
         <input type="text" id="searchInput" placeholder="Search by Name or Matric ID">
         <button onclick="searchTable()">Search</button>
         <button class="clear-red-button" onclick="clearSearch()">Clear</button>
+        <button onclick="registerStudent()">Register Student</button>
     </div>
 
     <!-- Container for the result table -->
@@ -148,17 +152,7 @@
                     <th>Name</th>
                     <th>Matric ID</th>
                     <th>Gender</th>
-                    <?php
-                    // Get the category from the URL
-                    $category = isset($_GET['category']) ? $_GET['category'] : 'overall';
-                    
-                    // Display appropriate column header based on the category
-                    if ($category == '0') {
-                        echo '<th>Year Ended</th>';
-                    } else {
-                        echo '<th>IC Number</th>';
-                    }
-                    ?>
+                    <th>IC Number</th>
                     <th class="actions">Actions</th>
                 </tr>
             </thead>
@@ -168,15 +162,7 @@
                     include 'database.php';
 
                     // Create a query to fetch the required data
-                    if ($category == 'overall') {
-                        $sql = "SELECT full_name, matric_id, gender, ic_number FROM student WHERE level IN (100, 200, 300)";
-                    } elseif ($category == '0') {
-                        $sql = "SELECT full_name, matric_id, gender, end_year FROM student WHERE level = 0";
-                    } else {
-                        $level = intval($category);
-                        $sql = "SELECT full_name, matric_id, gender, ic_number FROM student WHERE level = $level";
-                    }                    
-
+                    $sql = "SELECT full_name, matric_id, gender, ic_number FROM student";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -187,17 +173,12 @@
                                     <td>" . $counter++ . "</td>
                                     <td>" . $row["full_name"] . "</td>
                                     <td>" . $row["matric_id"] . "</td>
-                                    <td>" . strtoupper($row["gender"]) . "</td>";
-                            if ($category == '0') {
-                                echo "<td>" . $row["end_year"] . "</td>";
-                            } else {
-                                echo "<td>" . $row["ic_number"] . "</td>";
-                            }
-                            echo "<td class='actions'>
-                                    <a href='view_student.php?matric_id=" . $row["matric_id"] . "'><button class='action-button view-button'>View</button></a>
-                                    <a href='edit_student.php?matric_id=" . $row["matric_id"] . "'><button class='action-button edit-button'>Edit</button></a>
-                                    <button class='action-button delete-button' onclick='deleteStudent(\"" . $row["matric_id"] . "\")'>Delete</button>
-                                  </td>
+                                    <td>" . $row["gender"] . "</td>
+                                    <td>" . $row["ic_number"] . "</td>
+                                    <td class='actions'>
+                                        <a href='edit_student.php?matric_id=" . $row["matric_id"] . "'><button class='action-button edit-button'>Edit</button></a>
+                                        <button class='action-button delete-button' onclick='deleteStudent(\"" . $row["matric_id"] . "\")'>Delete</button>
+                                    </td>
                                   </tr>";
                         }
                     } else {
@@ -262,12 +243,6 @@
                 xhr.send("matric_id=" + matric_id);
             }
         }
-
-        // Add event listener to the logout button
-        document.querySelector('.logout-btn').addEventListener('click', function() {
-            // Redirect to login.html
-            window.location.href = 'login.html';
-        });
     </script>
 </body>
 </html>

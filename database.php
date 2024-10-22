@@ -1,9 +1,8 @@
 <?php
-// This code is used to establish connection to the database
-$servername = "localhost";
-$username = "root"; 
-$password = ""; 
-$dbname = "pms";  
+$servername = "localhost";  // Your database server name or IP
+$username = "root";  // Your database username
+$password = "";  // Your database password
+$dbname = "pms";  // Your database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

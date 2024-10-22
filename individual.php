@@ -28,13 +28,13 @@
 
     <!--Navigation header inside body-->
     <div class="navigation-text">
-        Data Visualization > Individual Data<br><br>
-        Select a student to view their attendance record and test results
+        Student Data Management > Student List<br><br>
+        List of Student Currently Enrolled this Course
     </div>
 
     <!-- Search box -->
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search by Name or Matric ID or IC No.">
+        <input type="text" id="searchInput" placeholder="Search by Name or Matric ID">
         <button onclick="searchTable()">Search</button>
         <button class="clear-button" onclick="clearSearch()">Clear</button> 
     </div>
@@ -54,7 +54,7 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody id="tableBody">
+                <tbody>
                     <?php
                         // Include the database connection file
                         include 'database.php';
@@ -69,9 +69,9 @@
                             while($row = $result->fetch_assoc()) {
                                 echo "<tr>
                                         <td>" . $counter++ . "</td>
-                                        <td>" . $row["full_name"] . "</td> 
+                                        <td>" . $row["full_name"] . "</td>
                                         <td>" . $row["matric_id"] . "</td>
-                                        <td>" . strtoupper($row["gender"]) . "</td>
+                                        <td>" . $row["gender"] . "</td>
                                         <td>" . $row["ic_number"] . "</td>
                                         <td class='actions'>
                                             <a href='view_stat.php?matric_id=" . $row["matric_id"] . "'><button class='view_statistic_btn'>View Data</button></a>
@@ -91,41 +91,5 @@
 
     <!--Referring to external JavaScript file-->
     <script src="script.js" defer></script>
-    <script>
-        function clearSearch() {
-            document.getElementById("searchInput").value = ""; // Clear the search input value
-            searchTable(); // Optionally, you can call the searchTable() function to reset the search results
-        }
-
-        function searchTable() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("tableBody");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                let found = false;
-                for (var j = 0; j < td.length; j++) {
-                    txtValue = td[j].textContent || td[j].innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        found = true;
-                        break;
-                    }
-                }
-                if (found) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-
-        // Add event listener to the logout button
-        document.querySelector('.logout-btn').addEventListener('click', function() {
-            // Redirect to login.html
-            window.location.href = 'login.html';
-        });
-    </script>
 </body>
 </html>

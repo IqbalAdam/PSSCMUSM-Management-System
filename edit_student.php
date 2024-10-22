@@ -1,5 +1,4 @@
 <?php
-// This code is used to edit student data in edit_student.php page
 include 'database.php';
 
 if (isset($_GET['matric_id'])) {
@@ -89,13 +88,5 @@ if (isset($_GET['matric_id'])) {
 
     <!--Referring to external JavaScript file-->
     <script src="script.js" defer></script>
-    
-    <script>
-        // Add event listener to the logout button
-        document.querySelector('.logout-btn').addEventListener('click', function() {
-            // Redirect to login.html
-            window.location.href = 'login.html';
-        });
-    </script>
 </body>
 </html>

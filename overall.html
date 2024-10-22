@@ -19,39 +19,28 @@
         </div>
         <h1>PSSCMUSM Management System</h1>
     </header>
-
-    <div class="container">
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="anr.html">Attendance & Records</a></li>
-                <li><a href="sdm.html">Student Data Management</a></li>
-                <li><a href="visual.html">Data Visualization</a></li>
-            </ul>
-            <button class="logout-btn">Logout</button>
-        </nav>
-    </div>
     
+
     <div class="navigation-text">
-        Data Visualization > Overall Data > Attendance Data
+        Data Visualization > Overall Data<br><br><br><br>Attendance Records
     </div>
 
     <!-- Dropdown menus and button -->
     <div class="container dropdown-container">
         <label for="monthSelect">Choose Month:</label>
         <select id="monthSelect">
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
         </select>
 
         <label for="yearSelect">Choose Year:</label>
@@ -59,7 +48,7 @@
             <!-- JavaScript will populate this with a range of years -->
         </select>
 
-        <button id="displayDataBtn">View Data</button>
+        <button id="displayDataBtn">Display Data</button>
     </div>
 
     <!-- Graph container -->
@@ -68,6 +57,20 @@
     </div>
 
     <script>
+        // Dummy data for attendance
+        var attendanceData = {
+            labels: ["4/2/2024", "10/2/2024", "13/2/2024", "20/2/2024", "23/2/2024", "29/2/2024"],
+            datasets: [{
+                label: 'Present',
+                data: [50, 60, 45, 55, 70, 65], // Dummy data for number of present students
+                backgroundColor: 'green'
+            }, {
+                label: 'Absent',
+                data: [25, 15, 30, 20, 5, 10], // Dummy data for number of absent students
+                backgroundColor: 'red'
+            }]
+        };
+    
         // Options for the attendance chart
         var attendanceOptions = {
             scales: {
@@ -106,7 +109,7 @@
             },
             title: {
                 display: true,
-                text: 'Graph of Student Attendance',
+                text: 'Graph of Student Attendance in Each Class in February',
                 fontSize: 20,
                 padding: 20
             }
@@ -115,20 +118,17 @@
         // Get the canvas element
         var ctx = document.getElementById('attendanceChart').getContext('2d');
     
-        // Create the attendance chart with empty data
+        // Create the attendance chart
         var attendanceChart = new Chart(ctx, {
             type: 'bar',
-            data: {
-                labels: [],
-                datasets: []
-            },
+            data: attendanceData,
             options: attendanceOptions
         });
 
         // Populate year dropdown with a range of years
         const currentYear = new Date().getFullYear();
         const yearSelect = document.getElementById('yearSelect');
-        for (let year = currentYear; year <= currentYear + 20; year++) {
+        for (let year = currentYear - 0; year <= currentYear + 20; year++) {
             const option = document.createElement('option');
             option.value = year;
             option.textContent = year;
@@ -144,56 +144,18 @@
         });
     
         function updateChartData(month, year) {
-            // Send AJAX request to fetch data from PHP script
-            $.ajax({
-                url: 'fetch_data.php',
-                type: 'POST',
-                data: { selectedMonth: month, selectedYear: year },
-                dataType: 'json',
-                success: function(data) {
-                    // Update chart with fetched data
-                    updateChartWithData(data);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error:', error);
-                }
-            });
-        }
-
-        function updateChartWithData(data) {
-            // Extracting dates and attendance from fetched data
-            var dates = data.map(function(item) {
-                return item.date;
-            });
-            var present = data.map(function(item) {
-                return item.present;
-            });
-            var absent = data.map(function(item) {
-                return item.absent;
-            });
-
-            // Update chart data
-            attendanceChart.data.labels = dates;
-            attendanceChart.data.datasets = [{
-                label: 'Present',
-                data: present,
-                backgroundColor: 'green'
-            }, {
-                label: 'Absent',
-                data: absent,
-                backgroundColor: 'red'
-            }];
-
-            // Update chart options (optional)
-            attendanceChart.options.title.text = 'Graph of Student Attendance';
+            // Here you would fetch new data based on the selected month and year.
+            // This example will just log the values and use the same dummy data.
+            console.log(`Selected Month: ${month}, Selected Year: ${year}`);
+    
+            // Dummy logic to update chart (use real data in a real scenario)
+            attendanceData.labels = ["4/2/2024", "10/2/2024", "13/2/2024", "20/2/2024", "23/2/2024", "29/2/2024"];
+            attendanceData.datasets[0].data = [50, 60, 45, 55, 70, 65];
+            attendanceData.datasets[1].data = [25, 15, 30, 20, 5, 10];
+    
             attendanceChart.update();
         }
-
-        // Add event listener to the logout button
-        document.querySelector('.logout-btn').addEventListener('click', function() {
-            // Redirect to login.html
-            window.location.href = 'login.html';
-        });
     </script>
+    
 </body>
 </html>

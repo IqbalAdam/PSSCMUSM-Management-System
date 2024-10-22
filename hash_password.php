@@ -1,5 +1,4 @@
 <?php
-//Testing..........
 $passwords = ['password1', 'password2', 'password3']; // replace with your actual passwords
 $hashed_passwords = [];
 

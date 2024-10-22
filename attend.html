@@ -37,63 +37,60 @@
     </div>
 
     <main>
-        <form id="dateForm" action="store_date.php" method="post">
-            <div class="class-setup-container">
-                <div class="choose-date">
-                    <label for="class-date">Choose Class Date</label>
-                    <input type="text" id="class-date" name="class-date">
-                </div>
+        <!--Set up class session-->
+        <div class="choose-date">
+            <label for="class-date">Choose Class Date</label>
+            <input type="text" id="class-date" name="class-date">
+        </div>
+        <div class="class-id">
+            <label for="class-id">Class ID (Auto Generate)</label>
+            <input type="text" id="class-id" name="class-id" readonly>
+        </div>
+
+        <!-- Start Session Button -->
+        <div class="start-session-btn">
+            <button class="start-session">Start Session</button>
+        </div>
+    </main>
     
-                <!-- Start Session Button -->
-                <div class="start-session-btn">
-                    <button type="submit" class="start-session" disabled>Start Session</button>
-                </div>
-            </div>
-        </form>
-    
-        <script>
-            $(document).ready(function() {
-                // Datepicker initialization
-                $("#class-date").datepicker({
-                    // Set the date format to YYYY-MM-DD
-                    dateFormat: 'yy-mm-dd', 
-                    onSelect: function(dateText) {
-                        // Enable the start session button when a date is selected
-                        $(".start-session").prop("disabled", false);
-                    }
-                });
-    
-                // "Start Session" button event handler
-                $(".start-session").click(function(event) {
-                    event.preventDefault(); 
-                    var classDate = $("#class-date").val();
-                    if (!classDate) {
-                        // Show error notification if date is not selected
-                        alert("Must select a date first before 'Start Session'");
-                    } else {
-                        // Send AJAX request to clear the file
-                        $.ajax({
-                            url: 'clear_file.php',
-                            type: 'POST',
-                            data: { classDate: classDate },
-                            success: function(response) {
-                                // Optionally, handle the response here
-                                $("#dateForm").submit();
-                            },
-                            error: function(xhr, status, error) {
-                                console.error('Error clearing file:', error);
-                            }
-                        });
-                    }
-                });
+    <script>
+        $(document).ready(function() {
+            // Datepicker initialization
+            $("#class-date").datepicker({
+                dateFormat: 'dd/mm/yy', // Set the date format to DD/MM/YYYY
+                onSelect: function(dateText) {
+                    var date = new Date(dateText);
+                    var year = date.getFullYear(); // Extract the year
+                    var randomLetters = generateRandomLetters(6);
+                    var classID = randomLetters + "-" + year.toString().substr(-2); // Example format: ABCDEF-24
+                    $("#class-id").val(classID);
+                }
             });
 
-            // Add event listener to the logout button
-            document.querySelector('.logout-btn').addEventListener('click', function() {
-                // Redirect to login.html
-                window.location.href = 'login.html';
+            // Function to generate random letters
+            function generateRandomLetters(length) {
+                var result = '';
+                var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                var charactersLength = characters.length;
+                for (var i = 0; i < length; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+                return result;
+            }
+
+            // Button click event handler for "Start Session" button
+            $(".start-session").click(function() {
+                var classDate = $("#class-date").val();
+                var classID = $("#class-id").val();
+                if (!classDate || !classID) {
+                    // Show error notification
+                    alert("Must select a date first before 'Start Session'");
+                } else {
+                    // Proceed to attend2.html
+                    window.location.href = "attend2.html";
+                }
             });
-        </script>
-    </main>
+        });
+    </script>
 </body>
 </html>

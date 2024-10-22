@@ -1,6 +1,9 @@
 <?php
 // Establishing connection to MySQL database
-include 'databse.php';
+$servername = "localhost"; // Change this to your MySQL server hostname
+$username = "username"; // Change this to your MySQL username
+$password = "password"; // Change this to your MySQL password
+$database = "pms"; // Change this to your MySQL database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -22,10 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gender = $_POST['gender'];
     $ic_number = $_POST['icNumber'];
     $school = $_POST['school'];
-    $image = $_FILES['image']['name'];
+    $image = $_FILES['image']['name']; // Assuming 'image' is the name of the file input
 
-    // Move uploaded file to uploads/
-    $target_dir = "uploads/"; 
+    // Move uploaded file to desired location
+    $target_dir = "uploads/"; // Directory where you want to store uploaded images
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 
