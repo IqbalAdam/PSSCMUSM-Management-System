@@ -27,3 +27,5 @@ https://www.youtube.com/watch?v=4qrgcE3jWM0&ab_channel=IqbalAdam
 
 Older repository name (iqbal_FYP)
 Was updated on 22/6/2024
+
+Version 2 is still under development. Last new update was on 29/10/2024
